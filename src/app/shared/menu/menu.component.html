@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+ 
+      <a class="navbar-brand" 
+       >
+         <img src="https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2Flogo-01.png?alt=media&token=c31f6502-4c41-4e63-b0b2-01d2e17b1a85" 
+              alt=""
+              style="margin-top: -12px; margin-left:-10px;">
+      </a>
+    </div> 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div >
+      <ul class="nav navbar-nav">   
+        <li routerLinkActive="active">
+          <a [routerLink]="['/cataloge']">
+            Cataloge
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/shopping-list']">
+          Shopping
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/dashboard']">
+          Dashboard
+          </a>
+        </li>
+         <li routerLinkActive="active">
+          <a [routerLink]="['/login']"
+          *ngIf="!authInfo?.isLoggedIn()"
+          >
+          Login
+          
+          </a>
+        </li>
+         <li>
+          <a *ngIf="authInfo?.isLoggedIn()" (click)="logOut()" >
+          Logout
+          </a>
+        </li>
+      </ul>
+      
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>    
+</div>
+

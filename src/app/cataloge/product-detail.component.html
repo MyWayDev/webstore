@@ -1,0 +1,89 @@
+ 
+<div class="container">
+<div class="row">
+    <div class="col-sm-6">
+        
+     
+</div>
+</div>
+     
+     <!-- resumt -->
+        
+               <div class="panel-heading resume-heading">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="col-xs-10 col-sm-4">
+                           <figure>
+                              <div class="col-xs-2" style="margin-bottom: 2.5px;">
+                              <img id="image1" 
+                                    src="{{selectedItem?.productImg}}"  
+                                    style="display: block; max-height: 160px;" 
+                                    alt="">
+                                    <img  id="image2"
+                                    src="{{selectedItem?.promoImg}}"  
+                                    style="display: inline-block; max-height: 65px;" 
+                                    alt="" 
+                                    #promoimg 
+                                    (mouseover)="promoimg.style='max-height: 72px; opacity: 1;
+                                                  filter: alpha(opacity=1); '" 
+                                    (mouseleave)="promoimg.style='max-height: 72px; opacity: 0.5;
+                                                  filter: alpha(opacity=50);'">
+                                    <img id="image3" *ngIf="selectedItem.isNew"
+                                      style="display: block; max-height: 50px;"
+                                      class="span4"  
+                                    src="https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/promo%2Fnew.png?alt=media&token=efca7b41-51bc-4ddc-9c28-64e72c4f4b5e"   
+                                    alt="">
+                                </div>
+                           </figure>
+                           
+                        </div>
+                      
+                        <div class="col-xs-6 col-sm-6">
+                           <ul class="list-group" >
+                              <li class="list-group-item" style="background-color:orange; "> <h3 style="font-weight:bolder;color:darkred;">
+                                                    {{selectedItem?.productId}}</h3>
+                                                    </li>
+                              <li class="list-group-item" style="background-color:aliceblue">
+                                <h5 style="font-weight:bolder">Price:&nbsp;&nbsp;&nbsp;{{selectedItem?.price}}&nbsp;Dh&nbsp;<i class="fa fa-money fa-rotate-90" aria-hidden="true"></i></h5>
+                              </li>
+                              <li class="list-group-item">
+                                <h5 style="font-weight:bolder">BP:&nbsp;&nbsp;&nbsp; {{selectedItem?.bp}}&nbsp;<i class="fa fa-sitemap" aria-hidden="true"></i></h5>
+                                 </li>
+                              <li class="list-group-item" style="background-color:aliceblue">
+                               <h5 style="font-weight:bolder">Size:&nbsp;&nbsp;&nbsp;{{selectedItem?.size}}&nbsp;<i class="fa fa-th-list" aria-hidden="true"></i></h5>
+                               </li>
+                                 <li class="list-group-item">
+                               <h5 style="font-weight:bolder">Stock:&nbsp;&nbsp;&nbsp;{{selectedItem?.stock}}&nbsp;<i class="fa fa-archive" aria-hidden="true"></i></h5>
+                               </li>
+                             
+                              <img src="" alt="">
+                              <p class="flex1"><input type="text" class="form-control flex2" placeholder="0"
+                              type="text" #qty [(ngModel)]="q" 
+                              required
+                              pattern="^[0-9]"
+                              titl = "only digits"
+                              (keyup.enter)="qty.value=0">
+                               <button pButton 
+                                              icon="fa fa-shopping-bag" 
+                                              class="btn btn-primary btn-xs" 
+                                              (click)="onAddToInvoice()" 
+                                              label="Add To Order"
+                                              [disabled]="qty.value < 1"
+                                              (click)="qty.value=0"></button>
+                                              </p>
+                          
+                           </ul>
+                           
+                                
+                        </div>
+                      
+                     </div>
+                  </div>
+               </div>
+              
+
+   
+       
+
+
+

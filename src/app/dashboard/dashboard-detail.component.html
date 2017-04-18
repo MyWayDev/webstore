@@ -1,0 +1,78 @@
+<body>
+    <section class="content content_content" style="width: 100%; margin: auto;">
+        <section class="invoice">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <i class=""></i>
+                        <small class="pull-right">Date: {{selectedItem?.addDate | date}}</small>
+                    </h2>
+                </div><!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+                <div class="col-xs-8 invoice-col">
+
+                    <address>
+                        <strong>
+                            {{selectedItem?.$key}}
+                        </strong>
+                        <br>
+                    </address>
+                </div><!-- /.col -->
+              
+            </div><!-- /.row -->
+            <!-- Table row -->
+            <div class="row">
+                <div class="col-xs-10 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr >
+                                <th>Qty</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>BP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of selectedItem?.invoiceDetails">
+                                <td>{{item.qty}}</td>
+                                <td>{{item.itemId}}</td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.bp}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-xs-8">
+                    <p class="lead"></p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td>{{selectedItem?.totalAmount}}</td>
+                                    <th>Total Bp:</th>
+                                    <td>{{selectedItem?.totalBp}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+                <div class="col-xs-8">
+                    <a href="" class="btn btn-default btn-xs"><i class="fa fa-print"></i> Print</a>
+                    
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+</body>

@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="pull-right">{{user.distrId}} | {{user.name}}</div>
+  
+  <div class="col-xs-12">
+    <!--mw-input-select></mw-input-select-->
+    <form autocomplete="off" action="" 
+          id="shopping-list-add" 
+          (ngSubmit)="onSubmit(f.value)" 
+          
+          #f="ngForm">
+          <fieldset>
+      <div class="row">
+        <div class="col-xs-4 form-group" 
+             style="display: inline-block; width: 220px;">
+              <!--p-dropdown [options]="codes" [(ngModel)]="item.itemId" 
+            [filter]="true"
+            [style]="{'width':'150px'}" editable="editable" 
+            #input  
+            id="item-id"
+            style="color: black; background: snow;"
+            placeholder=""
+            required
+            name="itemId"
+             (keyup.enter)="qty.select()"
+            >
+            </p-dropdown-->
+          <label for="item-Id">Id</label>
+          <input type="text"
+          #input  
+          id="item-id" 
+          required 
+          class="form-control"
+          [ngModel]="item.itemId"
+          name="itemId"
+        
+          (keyup.enter)="qty.focus()"
+          (focus)="input.value=null"
+         
+         >
+        </div>   
+        <div class="col-xs-4 form-group" 
+             style="display: inline-block; width:80px;">
+          <label for="item-qty">Qty</label>
+          <input type="text"
+          #qty 
+          id="item-qty" 
+          required 
+          class="form-control"
+          [ngModel]="item.qty"
+          name="qty" 
+         
+          (blur)="qty.value=null"
+          (keyup.enter)="qty.value=null"
+          >
+          </div>     
+      </div>
+      <div class="row">
+        <div class="col-xs-12">   
+          <button  #add
+          type="submit" 
+                class="btn btn-success btn-xs" 
+               icon="fa-check"
+                label="Add"
+                *ngIf="isAdd"
+                [disabled]="!f.valid"
+            
+                >Add</button>
+        <button 
+                type="submit" 
+                class="btn btn-success btn-xs" 
+                icon="fa-check"
+                label="Save"
+                *ngIf="!isAdd"
+                [disabled]="!f.valid"
+                >Save</button>
+          <button type="button"
+                 class="btn btn-danger btn-xs"
+                icon="fa-remove" 
+                label="Delete"
+                *ngIf="!isAdd"
+                (click)="onDelete()"
+                >Delete</button>
+          <button type="button"  
+                class="btn btn-info btn-xs" 
+                icon="fa-refresh" 
+                label="Clear"
+                *ngIf="!isAdd"
+                (click)="onClear()"
+                >clear</button>
+        </div>
+      </div>
+      </fieldset>
+      
+    </form>
+ 
+<div class="container ">
+	<div class="row">
+	    <div  class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right">
+            <div class="row well profile">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h6><p><strong id="user-name">Order Total: {{totalAmount}} Dh</strong></p></h6>
+                <h6><p id="user-frid">{{totalBp}}: BP Total </p></h6>
+                <h6><p id="user-mail">{{totalQty}} : Quantity Total</p></h6>
+                <h6><p id="user-role">Date {{CurrentDate | date : 'shortDate'}}</p></h6>
+                <button (click)="addHeader()"class="btn btn-warning">Save</button>
+                </div>
+            </div>    
+        </div>
+	</div>
+</div>
+</div>
+</div>
