@@ -24,7 +24,7 @@ import { CatalogeService } from '../services/cataloge.service';
               -webkit-text-stroke-width: .25px;
               -webkit-text-stroke-color: black;
             }
-            
+
                    #parent {
                     
                       position: relative;
@@ -33,6 +33,7 @@ import { CatalogeService } from '../services/cataloge.service';
                     }
                     #image1 {
                       float:left;
+                      algin:left;
                       position: relative;
                       top: 0;
                       left: 0;

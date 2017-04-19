@@ -1,23 +1,16 @@
- 
-<div class="container">
-<div class="row">
-    <div class="col-sm-6">
-        
-     
-</div>
-</div>
+
      
      <!-- resumt -->
         
                <div class="panel-heading resume-heading">
                   <div class="row">
-                     <div class="col-md-6">
-                        <div class="col-xs-10 col-sm-4">
+                     <div class="col-xs-12">        
                            <figure>
-                              <div class="col-xs-2" style="margin-bottom: 2.5px;">
-                              <img id="image1" 
-                                    src="{{selectedItem?.productImg}}"  
-                                    style="display: block; max-height: 160px;" 
+                              <div class="col-xs-5" >
+                              <img 
+                                    id="image1" 
+                                    src="{{selectedItem?.productImg}}"                                 
+                                    style="display: block; max-height: 230px;" 
                                     alt="">
                                     <img  id="image2"
                                     src="{{selectedItem?.promoImg}}"  
@@ -27,18 +20,21 @@
                                     (mouseover)="promoimg.style='max-height: 72px; opacity: 1;
                                                   filter: alpha(opacity=1); '" 
                                     (mouseleave)="promoimg.style='max-height: 72px; opacity: 0.5;
-                                                  filter: alpha(opacity=50);'">
+                                                  filter: alpha(opacity=75);'">
+                         
+                            <p class="pull-right" style="font-size:16px; font-weight:bold;">{{selectedItem?.desc}}</p>
+                           
+                                 
                                     <img id="image3" *ngIf="selectedItem.isNew"
                                       style="display: block; max-height: 50px;"
                                       class="span4"  
                                     src="https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/promo%2Fnew.png?alt=media&token=efca7b41-51bc-4ddc-9c28-64e72c4f4b5e"   
                                     alt="">
-                                </div>
-                           </figure>
-                           
-                        </div>
-                      
-                        <div class="col-xs-6 col-sm-6">
+                                </div>   
+                           </figure>                       
+                        
+                       
+                        <div class="col-xs-7">
                            <ul class="list-group" >
                               <li class="list-group-item" style="background-color:orange; "> <h3 style="font-weight:bolder;color:darkred;">
                                                     {{selectedItem?.productId}}</h3>

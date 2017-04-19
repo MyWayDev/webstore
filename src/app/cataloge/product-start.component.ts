@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-porduct-start',
   template: `
-              <p>
-                porduct-start Works!
-              </p>
+           
             `,
   styles: []
 })
