@@ -10,7 +10,7 @@
                               <img 
                                     id="image1" 
                                     src="{{selectedItem?.productImg}}"                                 
-                                    style="display: block; max-height: 230px;" 
+                                    style="display: block; max-height: 300px;" 
                                     alt="">
                                     <img  id="image2"
                                     src="{{selectedItem?.promoImg}}"  
@@ -20,7 +20,7 @@
                                     (mouseover)="promoimg.style='max-height: 72px; opacity: 1;
                                                   filter: alpha(opacity=1); '" 
                                     (mouseleave)="promoimg.style='max-height: 72px; opacity: 0.5;
-                                                  filter: alpha(opacity=75);'">
+                                                  filter: alpha(opacity=50);'">
                          
                             <p class="pull-right" style="font-size:16px; font-weight:bold;">{{selectedItem?.desc}}</p>
                            
