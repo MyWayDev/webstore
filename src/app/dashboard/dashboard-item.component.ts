@@ -6,19 +6,18 @@ import { InvoiceService } from '../services/invoice.service';
 @Component({
   selector: 'app-dashboard-item',
   templateUrl: './dashboard-item.component.html',
-  styles: [`
+    styles: [`
              input.hidden {
-    position: absolute;
+                   position: absolute;
+                  }
 
-   
-}
+               #profile-image1 {
+                      cursor: pointer;
+                    }
+                      `]
 
-#profile-image1 {
-    cursor: pointer;
-  
-     
-  `]
 })
+
 export class DashboardItemComponent implements OnInit {
   depositNumber:string;
 

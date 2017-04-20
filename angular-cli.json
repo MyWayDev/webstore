@@ -33,11 +33,12 @@
         "../node_modules/fullcalendar/dist/fullcalendar.js",                   
         "../node_modules/quill/dist/quill.js"  
       ],
-      "environments": {
-        "source": "environments/environment.ts",
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
+      "environmentSource": "environments/environment.ts",
+"environments": {
+  "dev": "environments/environment.ts",
+  "prod": "environments/environment.prod.ts"
+}
+
     }
   ],
   "addons": [],

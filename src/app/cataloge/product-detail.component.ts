@@ -1,7 +1,7 @@
 import { InvoiceDetails } from '../models/invoice-details';
 import { SlsService } from '../services/sls.service';
 import { ResultFunc } from '@angular-cli/ast-tools/node_modules/rxjs/observable/GenerateObservable';
-import { StringMapWrapper } from '@angular/core/src/facade/collection';
+
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { Subscription } from 'rxjs/Rx';
