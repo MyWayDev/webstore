@@ -59,13 +59,13 @@
                               pattern="^[0-9]"
                               titl = "only digits"
                               (keyup.enter)="qty.value=0">
-                               <button pButton 
-                                              icon="fa fa-shopping-bag" 
+                               <button
+                                             
                                               class="btn btn-primary btn-xs" 
                                               (click)="onAddToInvoice()" 
-                                              label="Add To Order"
+                                          
                                               [disabled]="qty.value < 1"
-                                              (click)="qty.value=0"></button>
+                                              (click)="qty.value=0">ADD</button>
                                               </p>
                           
                            </ul>

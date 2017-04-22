@@ -13,7 +13,7 @@ export class InvoiceService {
 
 user:Profile;
 orders:FirebaseListObservable<Invoice[]>
-  invoices:Observable<Invoice[]>;
+invoices:Observable<Invoice[]>;
  
 
   constructor(private af:AngularFire,
@@ -43,15 +43,14 @@ orders:FirebaseListObservable<Invoice[]>
                                         .do(console.log);
                                       }
 
-         getOrder(id:string):Observable<Invoice[]>{
-                                          return this.af.database.list
-                                          ('/invoices',{
-                                                  query:{
-                                                    orderByChild:'uid',
-                                                    
-                                                    equalTo:id
-                                                        }}).map(result=>Invoice.fromJsonInvoiceList
-                                                (result).reverse()).do(console.log)            
+   getOrder(id:string):Observable<Invoice[]>{
+                      return this.af.database.list
+                                   ('/invoices',{
+                                        query:{
+                                               orderByChild:'uid',
+                                                equalTo:id
+                                         }}).map(result=>Invoice.fromJsonInvoiceList
+                                        (result).reverse()).do(console.log)            
                                          }   
         getKey(id:string){
           return this.af.database.list('invoices',
@@ -75,12 +74,8 @@ orders:FirebaseListObservable<Invoice[]>
     }
 
           
-
-          getUserOrders(){
-            
+    getUserOrders(){
            return  this.getOrder(this.user.distrId).do(console.log)
-           
-
           }            
 
  /* getUserInvoices(){

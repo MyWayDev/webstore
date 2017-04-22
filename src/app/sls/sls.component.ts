@@ -1,3 +1,4 @@
+import { NgModel } from '@angular/forms/src/directives';
 import { CatalogeService } from '../services/cataloge.service';
 import { InvoiceDetails } from '../models/invoice-details';
 import { Product } from '../models/product';
@@ -14,13 +15,7 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
                 (cleared)="onCleared()">
     </app-sls-add>
     <hr>
-    <!--ul class="list-group">
-      <a  class="list-group-item"
-          style="cursor: pointer" 
-          *ngFor="let item of items" 
-          (click)="onSelectItem(item)">
-      {{item.itemId}} || {{item.price}} || {{item.bp}} || {{item.qty}}</a>
-    </ul-->
+ 
     <h5>{{desc}}</h5>
     <div class="bs-component">
 <table class="table table-striped table-hover">
@@ -29,6 +24,7 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
           <th style="width:100px;">ID</th>
           <th style="width:80px;" >Price</th>
             <th style="width:80px;">qty</th>
+         
           <th style="width:80px;">bp</th>    
           <th style="width:120px;">Total</th>
            <th style="width:110px;">Total Bp</th>
@@ -36,12 +32,15 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
     </thead>
       <tbody>
           <tr  *ngFor="let item of items" (click)="onSelectItem(item)">
+         
             <th scope="row">{{item.itemId}}</th>
             <td >{{item.price}}</td>
-            <td>{{item.qty}}</td> 
+            <td>{{item.qty}}</td>
+           
             <td>{{item.bp}}</td>
             <td>{{item.price*item.qty}}</td>
              <td>{{item.bp*item.qty}}</td>
+             
     
           </tr>
       </tbody>

@@ -30,43 +30,26 @@
 <body>
   <form autocomplete="off" novalidate class="login-form" [formGroup]="form">
   <fieldset>
-  <div class="login-wrap">
-	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-		<div class="login-form">
-			<div class="sign-in-htm">
-          
-				<div class="group">
-					<label for="user" class="label">email</label>
-					<input id="user" type="text" class="input"
-          name="email" formControlName="email"
-          >
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password"
-           name="password" formControlName="password" 
-          >
-				</div>
-				
-				<div class="group">
-					<input type="submit" class="button" value="Sign In" 
-          (click)="login()"
-          >
-				</div>
-				<div class="hr"></div>
-				
-			</div>
-			<div class="sign-up-htm">
-				<div class="group">
-					<label for="user" class="label">Coming Soon</label>
-				
-				</div>
-			
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>Welcome back.</h4>
+            <input type="text" id="user" name="email" formControlName="email" class="form-control input-sm chat-input" placeholder="email" />
+            <br>
+            <input type="password" id="userPassword" data-type="password" name="password" formControlName="password"  class="form-control input-sm chat-input" placeholder="password" />
+            <br>
+            <div class="wrapper">
+            <span class="group-btn">     
+            
+
+                <a type="submit" (click)="login()" class="btn btn-primary btn-md"><i class="fa fa-sign-in "></i></a>
+            </span>
+            </div>
+            </div>
+        
+        </div>
+    </div>
 </div>
   </fieldset>
  

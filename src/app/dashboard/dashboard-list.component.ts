@@ -6,8 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../models/invoice';
 import { Component, OnInit } from '@angular/core';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
-import {Header,Footer} from 'primeng/primeng';
+
 import { AngularFire } from 'angularfire2';
 
 @Component({

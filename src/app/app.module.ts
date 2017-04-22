@@ -28,8 +28,7 @@ import { SlsComponent } from './sls/sls.component';
 import { SlsAddComponent } from './sls/sls-add.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {ChartModule,ButtonModule,InputTextModule,AutoCompleteModule,
-  DropdownModule,SelectItem,DataTableModule,SharedModule,Header,Footer} from 'primeng/primeng';
+
 import { DashboardBindComponent } from './dashboard/dashboard-bind.component';
 import { DashboardItemComponent } from './dashboard/dashboard-item.component';
 import { DashboardDetailComponent } from './dashboard/dashboard-detail.component';
@@ -64,13 +63,8 @@ import { DashboardListComponent } from './dashboard/dashboard-list.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ButtonModule,
-    ChartModule,
-    InputTextModule,
-    AutoCompleteModule,
-    DropdownModule,
-    DataTableModule,
-    SharedModule,
+
+ 
     ReactiveFormsModule,
     routes,
     AngularFireModule.initializeApp(firebaseConfig,authConfig)
