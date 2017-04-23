@@ -71,7 +71,7 @@ user:Profile;
 isSave:boolean;
 
  invoices:Observable<Invoice[]>
-  itemStock: Product[];
+  itemStock:Observable<Product[]>;
 
   ngOnInit(){
      this.catalogeService.getProducts()
@@ -81,13 +81,7 @@ isSave:boolean;
      this.totalQty = this.sls.getTotalQty();
      this.user=this.sls.getUid(this.uid).subscribe(uid=>this.user=uid);
      console.log('user',this.user);
-
-     this.af.database.list('products/'+'-Khbf4Sr0ZB2dQ_zneXX').map(prods=>
-     {
-       console.log('beforeMap',prods);
-       return prods;
-     }).subscribe(x=>this.itemStock = x);
-     console.log('afterMap',this.itemStock)
+       
     }
 
   ngOnChanges(changes){

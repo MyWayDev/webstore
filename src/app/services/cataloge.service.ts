@@ -15,8 +15,6 @@ export class CatalogeService {
 constructor(private af:AngularFire) { }
 
 
-  
-
                                 
 
   getProducts():Observable<Product[]>{

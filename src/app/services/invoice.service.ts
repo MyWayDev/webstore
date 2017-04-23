@@ -21,6 +21,7 @@ invoices:Observable<Invoice[]>;
               private sls:SlsService) {
                  const uid = this.authSerive.authInfo$.value.$uid;
              this.user=this.sls.getUid(uid).subscribe(uid=>this.user=uid);
+           
                }
 
 

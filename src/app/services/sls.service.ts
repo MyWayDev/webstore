@@ -1,9 +1,14 @@
+import {
+    NgTools_InternalApi_NG2_ListLazyRoutes_Options
+} from 'angular-cli/node_modules/@angular/compiler-cli/src/ngtools_api';
+import { ResultFunc } from 'rxjs/observable/GenerateObservable';
+import { STRING_TYPE } from '@angular/compiler/src/output/output_ast';
 import { isPrimitive } from 'angular-cli/node_modules/@angular/compiler/testing/facade/lang';
 import { CatalogeService } from './cataloge.service';
 import { isObservable } from 'angular-cli/node_modules/@angular/core/src/util/lang';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Profile } from '../models/profile';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { InvoiceDetails } from '../models/invoice-details';
 import { Invoice } from '../models/invoice';
 import { Injectable } from '@angular/core';
@@ -19,35 +24,50 @@ import { Observable } from     'rxjs/Rx';
   private header:Invoice[]=[];
 
   invoices:Observable<Invoice[]>
-  itemStock: FirebaseListObservable<Product[]>;
+  itemStock: FirebaseObjectObservable<Product>;
+  prod;
+  S:number;
   
  
   constructor(
     private af:AngularFire, 
     private catalogeService:CatalogeService) {
-
+    
     this.invoice=this.af.database.list('/invoices');
    
 }
 
- 
- itemsbalance(key:string){
-      return this.af.database.list('invoices/'+ key)
-          .map(invos=>{
-                invos.map(invo=>{
-                    invo.stock=[];
-                        for(var d in invo.invoiceDetails)
-                            invo.stock
-                                .push(this.af.database
-                                .object('/invoiceDetails/'+d))
-              });
-              return invos;
-        })
+stock(key:string){
+  this.itemStock = this.af.database.object('products/' + key);
 
- }
-   
+  return this.itemStock
+}
+getStock(key:String){
+  return this.af.database.object('/products/'+key)
+    
+     
+}
 
-  saveInvoice(newInvoice){
+ saveInvoice(newInvoice){
+
+ for(var i=0; i < newInvoice.invoiceDetails.length; i++){
+ this.prod = this.af.database.object
+                    ('products/' + newInvoice.invoiceDetails[i].ref +'/stock')
+
+  this.prod.subscribe(x=>{
+    this.S=x.$value
+   console.log('S',this.S)
+  })
+
+   this.stock(newInvoice.invoiceDetails[i].ref)
+                        .update(
+                          {
+      stock: (this.S - newInvoice.invoiceDetails[i].qty)
+    }
+  
+    )}
+    console.log('stockupdate',this.prod)
+
   this.invoice.push(newInvoice);
             /*newInvoice.invoiceDetails.forEach(d=>{
 
@@ -58,16 +78,33 @@ import { Observable } from     'rxjs/Rx';
           } )  
   });*/
      console.log('savedInvoice',newInvoice)
+  
+
   }
 
-    getBalance(itemId:string[]):Observable<Product[]>{
-      return this.af.database.list('products',{
-            query:{
-              orderByKey:true,
-              equalTo:'itemId'
-            }
-          }).map(result=>Product.fromJsonProductList(result)).do(console.log)
-    }////test code
+getbalance(key:string):Observable<Product[]>{
+  return this.af.database.list('invoices',{
+    query:{
+      orderByKey:true,
+      equalTo:key
+    }
+  }).map(invos=>{invos.map(invo=>{
+    invo.stock=[];
+    for(var i=0; i < invo.invoiceDetails.length; i++)
+    invo.stock.push(this.af.database
+    .object('products/'+invo.invoiceDetails[i].ref))
+    
+  
+     console.log('invo',invo.stock);
+  })
+   
+    return invos;
+  })
+   
+}
+
+
+ 
 
 
 
