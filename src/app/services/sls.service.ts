@@ -1,12 +1,9 @@
-import {
-    NgTools_InternalApi_NG2_ListLazyRoutes_Options
-} from 'angular-cli/node_modules/@angular/compiler-cli/src/ngtools_api';
-import { ResultFunc } from 'rxjs/observable/GenerateObservable';
-import { STRING_TYPE } from '@angular/compiler/src/output/output_ast';
-import { isPrimitive } from 'angular-cli/node_modules/@angular/compiler/testing/facade/lang';
+import { relativeTimeRounding } from 'moment';
+import { consoleTestResultHandler } from 'tslint/lib/test';
+
+
 import { CatalogeService } from './cataloge.service';
-import { isObservable } from 'angular-cli/node_modules/@angular/core/src/util/lang';
-import { forEach } from '@angular/router/src/utils/collection';
+
 import { Profile } from '../models/profile';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { InvoiceDetails } from '../models/invoice-details';
@@ -27,13 +24,15 @@ import { Observable } from     'rxjs/Rx';
   itemStock: FirebaseObjectObservable<Product>;
   prod;
   S:number;
-  
+  sourceId:Observable<Product[]>
+  data;
  
   constructor(
     private af:AngularFire, 
     private catalogeService:CatalogeService) {
     
     this.invoice=this.af.database.list('/invoices');
+    
    
 }
 
@@ -42,11 +41,22 @@ stock(key:string){
 
   return this.itemStock
 }
-getStock(key:String){
-  return this.af.database.object('/products/'+key)
-    
-     
+
+
+
+getId(){
+ this.sourceId = this.af.database.list('/products').map(prods=>{
+  prods.map(prod=>{
+  this.data = []
+    for (var i in prod.productId)  
+    this.data.push(this.af.database.object('/productId/'+i))
+  });
+  return this.data
+})
+  
 }
+
+
 
  saveInvoice(newInvoice){
 
@@ -62,7 +72,7 @@ getStock(key:String){
    this.stock(newInvoice.invoiceDetails[i].ref)
                         .update(
                           {
-      stock: (this.S - newInvoice.invoiceDetails[i].qty)
+      stock:this.S - newInvoice.invoiceDetails[i].qty 
     }
   
     )}

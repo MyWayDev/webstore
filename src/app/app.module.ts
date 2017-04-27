@@ -33,6 +33,11 @@ import { DashboardBindComponent } from './dashboard/dashboard-bind.component';
 import { DashboardItemComponent } from './dashboard/dashboard-item.component';
 import { DashboardDetailComponent } from './dashboard/dashboard-detail.component';
 import { DashboardListComponent } from './dashboard/dashboard-list.component';
+// Import the Animations module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 
 
 
@@ -55,7 +60,10 @@ import { DashboardListComponent } from './dashboard/dashboard-list.component';
     DashboardBindComponent,
     DashboardItemComponent,
     DashboardDetailComponent,
-    DashboardListComponent
+    DashboardListComponent,
+    
+ 
+  
 
    
   ],
@@ -63,7 +71,8 @@ import { DashboardListComponent } from './dashboard/dashboard-list.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-
+    BrowserAnimationsModule,
+    DropDownsModule,
  
     ReactiveFormsModule,
     routes,

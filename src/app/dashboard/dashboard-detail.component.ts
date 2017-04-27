@@ -30,7 +30,7 @@ export class DashboardDetailComponent implements OnInit {
   key:string;
   invoiceItem:Invoice;
   subscription: Subscription;
- 
+  
 
 
   constructor(private router:Router,

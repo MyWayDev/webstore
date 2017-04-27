@@ -1,3 +1,4 @@
+
 import { map } from '@angular-cli/ast-tools/node_modules/rxjs/operator/map';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
@@ -8,15 +9,18 @@ import { Product } from '../models/product';
 import { SlsService } from '../services/sls.service';
 import { Observable } from 'rxjs/Rx';
 import { Component ,EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+
 import { AngularFire } from 'angularfire2';
 @Component({
   selector: 'app-sls-add',
   templateUrl: './sls-add.component.html',
   styles: [`
+          
+
             .profile
-{
-    font-family: 'Lato', 'sans-serif';
-}
+              {
+                  font-family: 'Lato', 'sans-serif';
+              }
 figure{
 margin-top:10px;
 cursor:pointer;
@@ -48,12 +52,6 @@ background:transparent;
 
 export class SlsAddComponent implements OnInit, OnChanges {
 
-    constructor(private sls:SlsService,
-  private catalogeService:CatalogeService,
-   private af:AngularFire,
-  private authService:AuthService)
-  {this.uid=this.authService.authInfo$.value.$uid;}
-
 @Input() item:InvoiceDetails;
 @Output() cleared = new EventEmitter();
 itemValues : Product;
@@ -69,9 +67,28 @@ newHeader:Invoice;
 uid:string;
 user:Profile;
 isSave:boolean;
+data:Product[];
 
- invoices:Observable<Invoice[]>
-  itemStock:Observable<Product[]>;
+
+
+
+    constructor(private sls:SlsService,
+  private catalogeService:CatalogeService,
+   private af:AngularFire,
+  private authService:AuthService){
+    this.uid=this.authService.authInfo$.value.$uid;
+   
+ 
+
+   
+}
+
+  handleFilter(value) {
+        this.data = this.products.filter(P => P.productId.toString()
+                        .includes(value))
+    }
+
+ 
 
   ngOnInit(){
      this.catalogeService.getProducts()
@@ -80,8 +97,8 @@ isSave:boolean;
      this.totalBp=this.sls.getTotalBp();
      this.totalQty = this.sls.getTotalQty();
      this.user=this.sls.getUid(this.uid).subscribe(uid=>this.user=uid);
-     console.log('user',this.user);
-       
+    
+   
     }
 
   ngOnChanges(changes){
@@ -126,15 +143,7 @@ isSave:boolean;
               console.log('save',this.isSaveable()); 
     }
 
-    onDelete(){
-      this.sls.deleteItem(this.item);
-      this.onClear();
-    }
-    
-    onClear(){
-      this.cleared.emit(null)
-      this.isAdd = true;
-    }
+ 
 
 onSave(addDate:Date,memberId:string,
           totalQty:number,totalBp:number,
@@ -168,8 +177,18 @@ getDetailsItems(invoice){
   for(var i in invoice.invoiceDetails){
     this.details.push(i)
   }
-
 }
+
+   onDelete(){
+      this.sls.deleteItem(this.item);
+      this.onClear();
+    }
+    
+    onClear(){
+      this.cleared.emit(null)
+      this.isAdd = true;
+    }
+    
 emptyInvoice(){
   this.totalAmount = 0;
   this.totalQty = 0;

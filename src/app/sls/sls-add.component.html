@@ -1,4 +1,5 @@
 <div class="row">
+ 
   <div class="pull-right">{{user?.distrId}} | {{user?.name}}</div>
   
   <div class="col-xs-12">
@@ -12,9 +13,32 @@
       <div class="row">
         <div class="col-xs-4 form-group" 
              style="display: inline-block; width: 220px;">
-       
+
           <label for="item-Id">Id</label>
-          <input type="text"
+          <!--Kendo AutoComplete-->
+        <div class="example-wrapper">
+              
+              <kendo-autocomplete  #input
+               
+                  [data]="data"
+                  [valueField]="'productId'"
+                  [filterable]="true"
+                  (filterChange)="handleFilter($event)"
+                  [placeholder]="'e.g. 5222'"
+                  class="form-control"
+                  style="width:200px;"  
+                  id="item-id" 
+                  class="form-control"
+                  [ngModel]="item.itemId"
+                  name="itemId"
+                 
+        
+              >
+              </kendo-autocomplete>
+             
+          </div>
+<!-- end Kendo-->
+          <!--input type="text"
           #input  
           id="item-id" 
           required 
@@ -25,7 +49,7 @@
           (keyup.enter)="qty.focus()"
           (focus)="input.value=null"
          
-         >
+         -->
         </div>   
         <div class="col-xs-4 form-group" 
              style="display: inline-block; width:80px;">

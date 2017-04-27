@@ -24,7 +24,6 @@ constructor(private af:AngularFire) { }
                                       }
 
 
-
     getItem(id:string):Observable<Product>{
                                           return this.af.database.list
                                           ('products',{
@@ -35,6 +34,7 @@ constructor(private af:AngularFire) { }
                                                  Product.fromJsonProduct(result[0])).do(console.log);
                                                         
                                          }
+                                         
 
 
 }

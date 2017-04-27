@@ -3,6 +3,7 @@ import { Invoice } from '../models/invoice';
 import { Component, OnInit,Input } from '@angular/core';
 import { InvoiceService } from '../services/invoice.service';
 
+
 @Component({
   selector: 'app-dashboard-item',
   templateUrl: './dashboard-item.component.html',
@@ -23,7 +24,7 @@ export class DashboardItemComponent implements OnInit {
 
   @Input() invoice:Invoice;
   @Input() key:string;
-  
+  height: number | string = '150px';
 
   constructor( private invoiceService:InvoiceService,
                 ) { }
