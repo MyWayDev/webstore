@@ -123,7 +123,7 @@ dupCheck(id:string,item:InvoiceDetails){
   private catalogeService:CatalogeService,
    private af:AngularFire,
   private authService:AuthService){
-    /*this.uid=this.authService.authInfo$.value.$uid;*/
+    this.uid=this.authService.authInfo$.value.$uid;
 }
 
   handleFilter(value) {

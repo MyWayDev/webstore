@@ -131,24 +131,32 @@
       
     </form>
  <div class="container ">
-	<div class="row">
-	    <div  class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right">
-            <div class="row well profile">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h6><p><strong >Order Total: {{totalAmount}} Dh</strong></p></h6>
-                <h6><p >{{totalBp}}: BP Total </p></h6>
-                <h6><p>{{totalQty}} : Quantity Total</p></h6>
-                <h6><p>Date {{CurrentDate | date : 'shortDate'}}</p></h6>
-               <button type="button"  
-                class="btn btn-warning btn-xs" 
+     <div class="row">
+        <div class="col-xs-12">
+      <button type="button"  
+                class="btn btn-warning btn-sm pull-right" 
                
                 *ngIf="isAdd"
                 (click)="onSave()"
                 >Save</button>
-                </div>
-            </div>    
-        </div>
-	</div>
+    		<hr>
+    		<div class="row">
+    	
+    			<div class="col-xs-12 text-right">
+    				<address>
+              <strong>{{CurrentDate | date : 'shortDate'}}</strong><br>
+        			<strong>{{totalAmount}} Dh:Total</strong><br>
+    					<strong>{{totalBp}}: BP Total</strong> <br>
+    					<strong>{{totalQty}}: Quantity Total</strong><br>
+    					
+    				</address>
+           
+    			</div>
+    		</div>
+    	
+    	</div>
+    </div>
+	
 </div>
 
 </div>

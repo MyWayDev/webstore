@@ -4,9 +4,8 @@ export class InvoiceDetails {
             public itemId?:string,
             public price?:number,
             public bp?:number,
-            public qty?:number,
-            public subTotal?:number,
-            public subTotalBp?:number
+            public qty?:number
+            
             
            
     ){}

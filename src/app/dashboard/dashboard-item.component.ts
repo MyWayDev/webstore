@@ -24,7 +24,7 @@ export class DashboardItemComponent implements OnInit {
 
   @Input() invoice:Invoice;
   @Input() key:string;
-  height: number | string = '150px';
+
 
   constructor( private invoiceService:InvoiceService,
                 ) { }

@@ -42,6 +42,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
  import { InputsModule } from '@progress/kendo-angular-inputs';
 import { PopupModule } from '@progress/kendo-angular-popup';
+import { UploadModule } from '@progress/kendo-angular-upload';
 import { StockComponent } from './stock/stock.component';
 import { BackendComponent } from './backend/backend.component';
 
@@ -69,10 +70,6 @@ import { BackendComponent } from './backend/backend.component';
     StockComponent,
     BackendComponent,
     
- 
-  
-
-   
   ],
   imports: [
     BrowserModule,
@@ -85,6 +82,7 @@ import { BackendComponent } from './backend/backend.component';
     ReactiveFormsModule,
     routes,
     PopupModule,
+    UploadModule,
 
     AngularFireModule.initializeApp(firebaseConfig,authConfig)
   

@@ -28,7 +28,7 @@ export const router:Routes = [
     { 
         path:'shopping-list', 
         component:SlsComponent,
-        /*canActivate:[AuthGuard]*/
+        canActivate:[AuthGuard]
     },
       { 
         path:'dashboard', 

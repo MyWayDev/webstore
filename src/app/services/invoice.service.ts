@@ -2,6 +2,7 @@ import { Profile } from '../models/profile';
 import { SlsService } from './sls.service';
 import { AuthService } from './auth.service';
 import { FirebaseListObservable, getOrderObservables } from 'angularfire2/database';
+import * as firebase from 'firebase';
 import { Invoice } from '../models/invoice';
 import { AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
@@ -14,6 +15,7 @@ export class InvoiceService {
 user:Profile;
 orders:FirebaseListObservable<Invoice[]>
 invoices:Observable<Invoice[]>;
+folder:any;
  
 
   constructor(private af:AngularFire,
@@ -21,16 +23,28 @@ invoices:Observable<Invoice[]>;
               private sls:SlsService) {
                  const uid = this.authSerive.authInfo$.value.$uid;
              this.user=this.sls.getUid(uid).subscribe(uid=>this.user=uid);
+             this.folder= 'deposits';
            
                }
 
-
      updateDeposit(key:string,depositNumber:string){
-   this.af.database.object('/invoices/'+key)
-   .update({
-     depositNumber:depositNumber,
-     pending:false  
-   })
+            let storageRef=firebase.storage().ref()
+            for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+              let path=`/${this.folder}/${selectedFile.name}`;
+              let iRef = storageRef.child(path);
+              iRef.put(selectedFile).then((snapshot)=>{
+                storageRef.child(path).getDownloadURL().then((url)=>{
+                       this.af.database.object('/invoices/'+key)
+                  .update({
+                    depositNumber:depositNumber,
+                    depositImg:url,
+                    pending:false  
+                  });
+                });
+              
+              })
+            }
+            
   }  
 
   removeDeposit(key:string){
