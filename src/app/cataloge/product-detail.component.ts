@@ -106,6 +106,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
                price:this.selectedItem.price,
                bp:this.selectedItem.bp,
                qty:this.q
+               //add totals and ref
                           };
                 console.log('INVO',this.invoiceItem);
        this.sls.addItem(this.invoiceItem)

@@ -1,6 +1,6 @@
 <div class="row">
  
-  <div class="pull-right">{{user?.distrId}} | {{user?.name}}</div>
+
   
   <div class="col-xs-12">
    
@@ -11,33 +11,31 @@
           #f="ngForm">
      
       <div class="row">
-        <div class="col-xs-4 form-group" 
+        <div class="col-xs-2 form-group" 
              style="display: inline-block; width: 220px;">
 
           <label for="item-Id">Id</label>
           <!--Kendo AutoComplete-->
         <div class="example-wrapper">
+          
               
-              <kendo-autocomplete  #input
-               
-                  [data]="data"
-                  [valueField]="'productId'"
-                  [filterable]="true"
-                  (filterChange)="handleFilter($event)"
-                  [placeholder]="'e.g. 5222'"
-                  class="form-control"
-                  style="width:200px;"  
-                  id="item-id" 
-                  class="form-control"
-                  [ngModel]="item.itemId"
-                  name="itemId"
-                 
-        
+            <kendo-maskedtextbox
+            #input 
+            id="item-id" 
+            required 
+            [ngModel]="item.itemId"
+            name="itemId"
+            (blur)="codeCheck(input.value)"
+            [includeLiterals]="includeLiterals"
+            [mask]="mask"
               >
-              </kendo-autocomplete>
-             
+            </kendo-maskedtextbox> 
+        
+                 <div *ngIf="show" >
+  <p>Invalid Code</p>
+</div>
           </div>
-<!-- end Kendo-->
+
           <!--input type="text"
           #input  
           id="item-id" 
@@ -45,38 +43,68 @@
           class="form-control"
           [ngModel]="item.itemId"
           name="itemId"
+          (blur)="onLeave(input.value)"
         
-          (keyup.enter)="qty.focus()"
           (focus)="input.value=null"
+           
          
          -->
-        </div>   
-        <div class="col-xs-4 form-group" 
+
+        </div> 
+    
+        <div class="col-xs-2 form-group" 
              style="display: inline-block; width:80px;">
-          <label for="item-qty">Qty</label>
-          <input type="text"
+              <label for="item-qty">Qty</label>
+              <kendo-numerictextbox  style="width:80px"
+               #qty 
+          id="item-qty" 
+         [autoCorrect]="autoCorrect"
+          [value]="valueN"
+            [min]="min"
+         [max]="max"
+          [ngModel]="item.qty"
+          name="qty" 
+          [format]="'n0'"    
+         (focus)="isAdd.endabled"
+         [disabled]="show"
+          (blur)="stockCheck(input.value,qty.value)"
+           
+              ></kendo-numerictextbox>
+              <div *ngIf="showII" >
+  <p>Invalid Qty</p>
+</div>
+          </div>   
+          <!--input type="text"
           #qty 
           id="item-qty" 
           required 
           class="form-control"
           [ngModel]="item.qty"
           name="qty" 
-         
+          [disabled]="show"
           (blur)="qty.value=null"
-          (keyup.enter)="qty.value=null"
-          >
-          </div>     
+          
+         
+          -->
+            <div class="col-xs-2 form-group" 
+             style="display: inline-block; width:80px; margin-top:25px; margin-left:10px">
+                 <button  #add
+          type="submit" 
+            
+                class="btn btn-info btn-sm" 
+             (click)="input.focus()"
+                *ngIf="isAdd"
+              [disabled]="!f.valid"
+              [disabled]="showII"
+              
+             
+            
+                >Add</button>
+               </div>
       </div>
       <div class="row">
         <div class="col-xs-12">   
-          <button  #add
-          type="submit" 
-                class="btn btn-success btn-xs" 
-             
-                *ngIf="isAdd"
-                [disabled]="!f.valid"
-            
-                >Add</button>
+       
         <button 
                 type="submit" 
                 class="btn btn-success btn-xs" 
@@ -125,3 +153,5 @@
 
 </div>
 </div>
+
+

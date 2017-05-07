@@ -1,7 +1,4 @@
 import { relativeTimeRounding } from 'moment';
-import { consoleTestResultHandler } from 'tslint/lib/test';
-
-
 import { CatalogeService } from './cataloge.service';
 
 import { Profile } from '../models/profile';
@@ -28,12 +25,10 @@ import { Observable } from     'rxjs/Rx';
   data;
  
   constructor(
-    private af:AngularFire, 
-    private catalogeService:CatalogeService) {
+              private af:AngularFire, 
+              private catalogeService:CatalogeService) {
     
-    this.invoice=this.af.database.list('/invoices');
-    
-   
+      this.invoice=this.af.database.list('/invoices');
 }
 
 stock(key:string){
@@ -45,13 +40,13 @@ stock(key:string){
 
 
 getId(){
- this.sourceId = this.af.database.list('/products').map(prods=>{
-  prods.map(prod=>{
-  this.data = []
-    for (var i in prod.productId)  
-    this.data.push(this.af.database.object('/productId/'+i))
-  });
-  return this.data
+          this.sourceId = this.af.database.list
+                      ('/products').map(prods=>{prods.map(prod=>{
+                        this.data = []
+                        for (var i in prod.productId)  
+                 this.data.push(this.af.database.object('/productId/'+i))
+                      });
+          return this.data;
 })
   
 }
@@ -65,7 +60,7 @@ getId(){
                     ('products/' + newInvoice.invoiceDetails[i].ref +'/stock')
 
   this.prod.subscribe(x=>{
-    this.S=x.$value
+              this.S=x.$value
    console.log('S',this.S)
   })
 
@@ -114,14 +109,14 @@ getbalance(key:string):Observable<Product[]>{
 }
 
 
- 
-
-
-
     addItem(item:InvoiceDetails){
+     
+    
               this.items.push(item);
-        console.log('list',this.items)              
+        console.log('list',this.items)   
+              
   }
+
    addItems(list:InvoiceDetails[]){
             Array.prototype.push.apply(this.items);
   }
@@ -141,6 +136,7 @@ getbalance(key:string):Observable<Product[]>{
 
   editItem(oldItem:InvoiceDetails,newItem:InvoiceDetails){
     this.items[this.items.indexOf(oldItem)]=newItem;
+    
   }
 
   deleteItem(item:InvoiceDetails){
@@ -150,6 +146,11 @@ getbalance(key:string):Observable<Product[]>{
   deleteItems(){
    this.items.length=0;
   }
+
+
+
+
+
 
   getTotalBp(){
      let total = 0;

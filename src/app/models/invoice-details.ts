@@ -5,6 +5,11 @@ export class InvoiceDetails {
             public price?:number,
             public bp?:number,
             public qty?:number,
+            public subTotal?:number,
+            public subTotalBp?:number
+            
            
     ){}
+   
+    
 }

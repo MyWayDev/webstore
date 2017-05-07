@@ -19,8 +19,8 @@ constructor(private af:AngularFire) { }
 
   getProducts():Observable<Product[]>{
                                         return this.af.database.list('products')
-                                        .map(Product.fromJsonProductList)
-                                        .do(console.log);
+                                        .map(Product.fromJsonProductList).do(console.log)
+                                      
                                       }
 
 

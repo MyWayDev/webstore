@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -34,15 +35,21 @@ export class ProductListComponent implements OnInit {
   constructor(private catalogeService:CatalogeService) { }
 
   ngOnInit() {
-              this.catalogeService.getProducts()
+     this.catalogeService.getProducts()
                                   .subscribe(items=> 
                                               this.products = this.filtered = items);
+                                          
              }
 
-  search(input:string){
+  search(search:string){
+   
+  
                         this.filtered=this.products
-                        .filter(P => P.productId.toString()
-                        .includes(input))
+                        .filter(item=>parseInt(item.productId).toString()
+                        .includes(search)
+                       
+                        )
+                       console.log('searchInput',search)
                       }
 
 }

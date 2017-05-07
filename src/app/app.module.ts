@@ -1,3 +1,4 @@
+
 import { InvoiceService } from './services/invoice.service';
 import { AuthGuard } from './login/authguard';
 import { RouterModule } from '@angular/router';
@@ -21,6 +22,7 @@ import { ProductListComponent } from './cataloge/product-list.component';
 import { CatalogeService} from './services/cataloge.service';
 import { SlsService } from './services/sls.service';
 import { AuthService } from './services/auth.service';
+import { StockService} from './services/stock.service';
 import { ProductBindComponent } from './cataloge/product-bind.component';
 import { ProductDetailComponent } from './cataloge/product-detail.component';
 import { ProductStartComponent } from './cataloge/product-start.component';
@@ -37,8 +39,11 @@ import { DashboardListComponent } from './dashboard/dashboard-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-
-
+import { GridModule } from '@progress/kendo-angular-grid';
+ import { InputsModule } from '@progress/kendo-angular-inputs';
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { StockComponent } from './stock/stock.component';
+import { BackendComponent } from './backend/backend.component';
 
 
 
@@ -61,6 +66,8 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     DashboardItemComponent,
     DashboardDetailComponent,
     DashboardListComponent,
+    StockComponent,
+    BackendComponent,
     
  
   
@@ -73,13 +80,16 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     HttpModule,
     BrowserAnimationsModule,
     DropDownsModule,
- 
+    GridModule,
+    InputsModule,
     ReactiveFormsModule,
     routes,
+    PopupModule,
+
     AngularFireModule.initializeApp(firebaseConfig,authConfig)
   
   ],
-  providers: [CatalogeService,SlsService,InvoiceService,AuthService,AuthGuard],
+  providers: [CatalogeService,SlsService,InvoiceService,AuthService,AuthGuard,StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,9 +11,10 @@
   <div class="col-md-5 col-sm-5 col-xs-5 center"> 
     <ul class="list-group">
           <input id="search-input" class="form-control" placeholder="Search"
-          (keyup)="search(input.value)"#input>
+          (keyup)="search(input.value)" #input>
           <i class="fa fa-search errspan" aria-hidden="true"></i>
       <app-product-bind [productList]='filtered'></app-product-bind>   
     </ul>
   </div>
 </div>
+

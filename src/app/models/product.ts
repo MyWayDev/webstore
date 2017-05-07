@@ -34,14 +34,10 @@ export class Product {
           return productArray.map(Product.fromJsonProduct);
                                 }
                              
-      static fromJsonId({ productId
-                          }):Product {return new Product ( productId);
-                             }
+      
                              
 
-        static fromJsonIdList(productArray:any[]):Product[]{
-          return productArray.map(Product.fromJsonId);
-                                }
+       
                                             
                      }
   

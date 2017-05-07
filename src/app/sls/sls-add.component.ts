@@ -1,4 +1,6 @@
 
+import { relativeTimeRounding } from 'moment';
+
 import { map } from '@angular-cli/ast-tools/node_modules/rxjs/operator/map';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
@@ -9,6 +11,7 @@ import { Product } from '../models/product';
 import { SlsService } from '../services/sls.service';
 import { Observable } from 'rxjs/Rx';
 import { Component ,EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+   import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
 
 import { AngularFire } from 'angularfire2';
 @Component({
@@ -16,7 +19,6 @@ import { AngularFire } from 'angularfire2';
   templateUrl: './sls-add.component.html',
   styles: [`
           
-
             .profile
               {
                   font-family: 'Lato', 'sans-serif';
@@ -68,19 +70,60 @@ uid:string;
 user:Profile;
 isSave:boolean;
 data:Product[];
+show:boolean;
+showII:boolean;
+  
+   public autoCorrect: boolean = true;
+   public min: number = 1;
+    public max: number = 99;
+    public valueN: number = 1;
 
+   public includeLiterals: boolean = false;
+  public mask: string = "0000";
 
+codeCheck(input:string){
+  let x;
+x= this.products.findIndex(i=>input==i.productId);
+
+  if(x > 0 || x == "")
+  {
+    this.show=false;  
+  }
+  else{
+    this.show=true;
+  }
+}
+
+stockCheck(id:string, qty:number){
+  if(this.show==false)
+  {let y;
+  y=this.products.find(i=>id==i.productId).stock;
+  if(y<qty){
+    this.showII=true;
+  }
+  else{
+    this.showII=false;
+  }
+  console.log('stock',y);}
+
+}
+
+dupCheck(id:string,item:InvoiceDetails){
+  let z;
+  z=this.sls.getItems().forEach(i=>{
+    if(id==i.itemId){
+      i.qty+item.qty
+      this.sls.editItem(z,item);
+    }
+  })
+}
 
 
     constructor(private sls:SlsService,
   private catalogeService:CatalogeService,
    private af:AngularFire,
   private authService:AuthService){
-    this.uid=this.authService.authInfo$.value.$uid;
-   
- 
-
-   
+    /*this.uid=this.authService.authInfo$.value.$uid;*/
 }
 
   handleFilter(value) {
@@ -103,7 +146,7 @@ data:Product[];
 
   ngOnChanges(changes){
       if(changes.item.currentValue === null){
-        this.item = {itemId:null, qty:null};
+        this.item = {itemId:' ', qty:null};
       this.isSaveable();
       }
        else{this.isAdd = false;  
@@ -112,10 +155,11 @@ data:Product[];
   }
 
     onSubmit(invoiceDetails:InvoiceDetails){
-
-      this.itemValues= this.products.find(i=>invoiceDetails.itemId==i.productId)
-     
-      const newItem = new InvoiceDetails(
+if(this.show==false || this.showII==false)
+      {
+        this.itemValues= this.products.find(i=>invoiceDetails.itemId==i.productId)
+  
+                 const newItem = new InvoiceDetails(
                                           invoiceDetails.ref = this.itemValues.$key,
                                           invoiceDetails.itemId,
                                           invoiceDetails.price =this.itemValues.price,
@@ -125,11 +169,12 @@ data:Product[];
                                            console.log('itemKey',newItem);
                               
             if(!this.isAdd){
+             
               this.sls.editItem(this.item,newItem);
               this.totalAmount=this.sls.getTotalAmount();
               this.totalBp=this.sls.getTotalBp();
               this.totalQty = this.sls.getTotalQty();
-              this.item = {itemId:null,qty:null};
+            
               this.isSaveable();
             }
               else{
@@ -139,8 +184,13 @@ data:Product[];
                  this.totalBp=this.sls.getTotalBp();   
                  this.totalQty = this.sls.getTotalQty();
                  this.isSaveable();
+                  
               }
-              console.log('save',this.isSaveable()); 
+              console.log('save',this.isSaveable());
+           
+      } else{
+        
+      }
     }
 
  
@@ -169,7 +219,7 @@ onSave(addDate:Date,memberId:string,
               this.sls.deleteItems();
               this.emptyInvoice();
               /*this.sls.getBalance()*/
-              this.item = {itemId:null, qty:null};
+             
               
             }
 
