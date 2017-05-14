@@ -10,7 +10,7 @@
                               <img 
                                     id="image1" 
                                     src="{{selectedItem?.productImg}}"                                 
-                                    style="display: block; max-height: 300px;" 
+                                    style="display: block; max-height: 255px;" 
                                     alt="">
                                     <img  id="image2"
                                     src="{{selectedItem?.promoImg}}"  
@@ -22,7 +22,7 @@
                                     (mouseleave)="promoimg.style='max-height: 72px; opacity: 0.5;
                                                   filter: alpha(opacity=50);'">
                          
-                            <p class="pull-right" style="font-size:16px; font-weight:bold;">{{selectedItem?.desc}}</p>
+                            <!--p class="pull-right" style="font-size:16px; font-weight:bold;">{{selectedItem?.desc}}</p-->
                            
                                  
                                     <img id="image3" *ngIf="selectedItem.isNew"
@@ -36,7 +36,8 @@
                        
                         <div class="col-xs-7">
                            <ul class="list-group" >
-                              <li class="list-group-item" style="background-color:orange; "> <h3 style="font-weight:bolder;color:darkred;">
+                              <li class="list-group-item" style="background-color:orange; ">
+                                 <h3 style="font-weight:bolder;color:darkred;" >
                                                     {{selectedItem?.productId}}</h3>
                                                     </li>
                               <li class="list-group-item" style="background-color:aliceblue">
@@ -48,35 +49,102 @@
                               <li class="list-group-item" style="background-color:aliceblue">
                                <h5 style="font-weight:bolder">Size:&nbsp;&nbsp;&nbsp;{{selectedItem?.size}}&nbsp;<i class="fa fa-th-list" aria-hidden="true"></i></h5>
                                </li>
-                                 <li class="list-group-item">
+                                 <!--li class="list-group-item">
                                <h5 style="font-weight:bolder">Stock:&nbsp;&nbsp;&nbsp;{{selectedItem?.stock}}&nbsp;<i class="fa fa-archive" aria-hidden="true"></i></h5>
-                               </li>
+                               </li-->
                              
                               <img src="" alt="">
-                              <p class="flex1"><input type="text" class="form-control flex2" placeholder="0"
+                              <p class="flex1">
+                                
+                          <!--input type="text" class="form-control flex2" placeholder="0"
                               type="text" #qty [(ngModel)]="q" 
                               required
                               pattern="^[0-9]"
                               titl = "only digits"
-                              (keyup.enter)="qty.value=0">
+                              (keyup.enter)="qty.value=0"--> </p>
+                          
+                           <kendo-numerictextbox  style="width:180px"
+                                  
+                                  #qty
+                                  id="item-qty" 
+                                  [autoCorrect]="autoCorrect"
+                                  [value]="valueN"
+                                  [min]="min"
+                                  [max]="max"
+                                   [(ngModel)]='q'
+                                    name="qty" 
+                                    [format]="'n0'"    
+                                  
+                                  [disabled]="show"
+                                  
+                                    
+                           ></kendo-numerictextbox>
+                           
                                <button
                                              
-                                              class="btn btn-primary btn-xs" 
+                                              class="btn btn-primary btn-sm" 
                                               (click)="onAddToInvoice()" 
-                                          
-                                              [disabled]="qty.value < 1"
-                                              (click)="qty.value=0">ADD</button>
-                                              </p>
-                          
+                                              
+                                            
+                                            
+                                              >ADD</button>
+                                            <div *ngIf="showII" style="color:brown; font-size:16px;" >
+                            {{stock}}  الكمية المتاحة
+                            </div>  
                            </ul>
                            
                                 
                         </div>
-                      
+      
                      </div>
                   </div>
                </div>
+               
               
+               <div class="panel panel-primary" *ngIf="invoiceDetails.length>0">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Order Summary
+     <strong class=""><span style="background-color:white;font-size:14px;line-height: 1.5;color:maroon;"
+             class="badge badge-pill  pull-right">{{totalBp}} Bp</span></strong>
+   
+    <strong class=""><span style="background-color:white;font-size:14px;line-height: 1.5;color:maroon;"
+            class="badge badge-pill  pull-right">{{totalAmount}} Dh</span></strong>
+  </div>
+   <strong><button class="btn btn-success btn-sm"
+   (click)="toShopping()"
+   >save</button></strong>
+  <!-- Table -->
+	<div class="table-responsive">
+    					<table class="table table-sm  table-striped table-hover">
+    						<thead class="thead-inverse">
+                      <tr>
+                      <td>
+                      </td>            
+        							<td class="text-center"><strong>Item</strong></td>
+        							<td class="text-center"><strong>Quantity</strong></td>
+                    </tr>
+    						</thead>
+    						<tbody>
+    							<tr  *ngFor="let item of invoiceDetails" 
+                    (click)="itemSelect(item.itemId)">
+                  <td  class="text-center">
+                    <span>
+                     <img 
+                      src=
+                      "https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/cat%2F{{item.itemId}}.png?alt=media&token=afbdc43b-86f2-48a6-af60-6ecb751fcaef"  
+                      style="max-height: 55px;"       
+                      alt=""/>
+                    </span>
+                  </td>
+    								<td class="text-center" ><strong>{{item.itemId}}</strong></td>
+    								<td class="text-center">{{item.qty}}</td>
+    							</tr>
+    						</tbody>
+    					</table>
+    				</div>
+</div>
+    
+
 
    
        

@@ -33,7 +33,7 @@ folder:any;
               let path=`/${this.folder}/${selectedFile.name}`;
               let iRef = storageRef.child(path);
               iRef.put(selectedFile).then((snapshot)=>{
-                storageRef.child(path).getDownloadURL().then((url)=>{
+                iRef.getDownloadURL().then((url)=>{
                        this.af.database.object('/invoices/'+key)
                   .update({
                     depositNumber:depositNumber,
@@ -57,6 +57,15 @@ folder:any;
                                         .map(Invoice.fromJsonInvoiceList)
                                         .do(console.log);
                                       }
+     getAllOrder():Observable<Invoice[]>{
+                      return this.af.database.list
+                                   ('/invoices',{
+                                        query:{
+                                              orderByKey:true,
+                                               
+                                         }}).map(result=>Invoice.fromJsonInvoiceList
+                                        (result).filter(p=>p.pending==false && p.checked==false)).do(console.log)            
+                                         }   
 
    getOrder(id:string):Observable<Invoice[]>{
                       return this.af.database.list

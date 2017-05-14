@@ -1,0 +1,20 @@
+<div class="row"> 
+  <div id="col" class="col-xs-6">
+    <!--a [routerLink]="['new']" 
+       class="btn btn-default btn-xs pull-right">
+       New Product
+    </a-->
+  </div>
+</div>
+
+<div class="row"> 
+  <div class="col-md-5 col-sm-5 col-xs-5 pull-left"> 
+    <ul class="list-group">
+          <input id="search-input" class="form-control" placeholder="Search"
+          (keyup)="search(input.value)"#input>
+          <i class="fa fa-search errspan" aria-hidden="true"></i>
+      <app-backend-bind [invoiceList]='myOrders'></app-backend-bind>   
+      
+    </ul>
+  </div>
+</div>

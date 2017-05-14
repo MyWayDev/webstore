@@ -1,5 +1,4 @@
 
-import { relativeTimeRounding } from 'moment';
 
 import { map } from '@angular-cli/ast-tools/node_modules/rxjs/operator/map';
 import { Profile } from '../models/profile';
@@ -12,6 +11,7 @@ import { SlsService } from '../services/sls.service';
 import { Observable } from 'rxjs/Rx';
 import { Component ,EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
    import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
+   import{MaskedTextBoxModule}from '@progress/kendo-angular-inputs';
 
 import { AngularFire } from 'angularfire2';
 @Component({
@@ -55,6 +55,7 @@ background:transparent;
 export class SlsAddComponent implements OnInit, OnChanges {
 
 @Input() item:InvoiceDetails;
+
 @Output() cleared = new EventEmitter();
 itemValues : Product;
 isAdd = true;
@@ -72,6 +73,7 @@ isSave:boolean;
 data:Product[];
 show:boolean;
 showII:boolean;
+noAdd:boolean;
   
    public autoCorrect: boolean = true;
    public min: number = 1;
@@ -81,6 +83,21 @@ showII:boolean;
    public includeLiterals: boolean = false;
   public mask: string = "0000";
 
+  clearValid(){
+    this.show=false;
+    this.showII=false;
+  
+  }
+disableAdd(){
+  this.noAdd=true;
+}
+enableAdd(qty){
+  if( this.showII == false)
+ { this.noAdd=false;}
+ else{
+   this.noAdd=true;
+ }
+}
 codeCheck(input:string){
   let x;
 x= this.products.findIndex(i=>input==i.productId);
@@ -98,13 +115,15 @@ stockCheck(id:string, qty:number){
   if(this.show==false)
   {let y;
   y=this.products.find(i=>id==i.productId).stock;
+ 
   if(y<qty){
     this.showII=true;
   }
   else{
     this.showII=false;
+    this.noAdd=false;
   }
-  console.log('stock',y);}
+  }
 
 }
 
@@ -145,11 +164,14 @@ dupCheck(id:string,item:InvoiceDetails){
     }
 
   ngOnChanges(changes){
+   
       if(changes.item.currentValue === null){
-        this.item = {itemId:' ', qty:null};
+        this.item = {itemId:' ', qty:1};
+       
       this.isSaveable();
       }
        else{this.isAdd = false;  
+      
             this.isSaveable()
       }  
   }
@@ -174,7 +196,7 @@ if(this.show==false || this.showII==false)
               this.totalAmount=this.sls.getTotalAmount();
               this.totalBp=this.sls.getTotalBp();
               this.totalQty = this.sls.getTotalQty();
-            
+            this.item = {itemId:"", qty:1};
               this.isSaveable();
             }
               else{
@@ -183,13 +205,14 @@ if(this.show==false || this.showII==false)
                  this.totalAmount=this.sls.getTotalAmount();
                  this.totalBp=this.sls.getTotalBp();   
                  this.totalQty = this.sls.getTotalQty();
+                 this.item = {itemId:"", qty:1};
                  this.isSaveable();
                   
               }
               console.log('save',this.isSaveable());
            
       } else{
-        
+       
       }
     }
 
@@ -230,7 +253,10 @@ getDetailsItems(invoice){
 }
 
    onDelete(){
-      this.sls.deleteItem(this.item);
+      this.sls.deleteItem(this.item);     
+       this.totalAmount=this.sls.getTotalAmount();
+                 this.totalBp=this.sls.getTotalBp();   
+                 this.totalQty = this.sls.getTotalQty();   
       this.onClear();
     }
     
@@ -246,7 +272,7 @@ emptyInvoice(){
 }
 
  isSaveable(){
-    if(this.totalQty > 0){
+    if(this.sls.getItems().length==0){
       this.isSave = true;
     }
     else{

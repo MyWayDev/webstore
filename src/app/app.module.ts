@@ -45,7 +45,13 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { UploadModule } from '@progress/kendo-angular-upload';
 import { StockComponent } from './stock/stock.component';
 import { BackendComponent } from './backend/backend.component';
-
+import { BackendItemComponent } from './backend/backend-item.component';
+import { BackendListComponent } from './backend/backend-list.component';
+import { BackendDetailComponent } from './backend/backend-detail.component';
+import { BackendBindComponent } from './backend/backend-bind.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+ import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
+import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
 
 
 
@@ -69,6 +75,12 @@ import { BackendComponent } from './backend/backend.component';
     DashboardListComponent,
     StockComponent,
     BackendComponent,
+    BackendItemComponent,
+    BackendListComponent,
+    BackendDetailComponent,
+    BackendBindComponent,
+    DropdownDirective,
+   
     
   ],
   imports: [
@@ -83,7 +95,7 @@ import { BackendComponent } from './backend/backend.component';
     routes,
     PopupModule,
     UploadModule,
-
+    MaskedTextBoxModule, NumericTextBoxModule,
     AngularFireModule.initializeApp(firebaseConfig,authConfig)
   
   ],

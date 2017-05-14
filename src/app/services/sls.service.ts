@@ -37,8 +37,6 @@ stock(key:string){
   return this.itemStock
 }
 
-
-
 getId(){
           this.sourceId = this.af.database.list
                       ('/products').map(prods=>{prods.map(prod=>{
@@ -47,11 +45,8 @@ getId(){
                  this.data.push(this.af.database.object('/productId/'+i))
                       });
           return this.data;
-})
-  
+}) 
 }
-
-
 
  saveInvoice(newInvoice){
 
@@ -83,8 +78,6 @@ getId(){
           } )  
   });*/
      console.log('savedInvoice',newInvoice)
-  
-
   }
 
 getbalance(key:string):Observable<Product[]>{
@@ -108,13 +101,9 @@ getbalance(key:string):Observable<Product[]>{
    
 }
 
-
     addItem(item:InvoiceDetails){
-     
-    
               this.items.push(item);
-        console.log('list',this.items)   
-              
+        console.log('list',this.items)              
   }
 
    addItems(list:InvoiceDetails[]){
@@ -136,21 +125,15 @@ getbalance(key:string):Observable<Product[]>{
 
   editItem(oldItem:InvoiceDetails,newItem:InvoiceDetails){
     this.items[this.items.indexOf(oldItem)]=newItem;
-    
   }
 
   deleteItem(item:InvoiceDetails){
     this.items.splice(this.items.indexOf(item),1)
-
   }
+
   deleteItems(){
    this.items.length=0;
   }
-
-
-
-
-
 
   getTotalBp(){
      let total = 0;
@@ -176,7 +159,7 @@ getbalance(key:string):Observable<Product[]>{
      let total = 0;
     for(var i=0; i < this.items.length; i++){
       if(this.items[i]){
-        total += (parseInt(this.items[i].qty.toString()));
+        total += (this.items[i].qty);
         
       }
     }

@@ -1,0 +1,13 @@
+ #search-input {
+                padding-left: 43px;
+                padding-right: 43px;
+                border-radius: 23px;
+                            }
+            .errspan {
+                float: left;
+                margin-left: 15px;
+                margin-top: -25px;
+                position: relative;
+                z-index: 2;
+                color: gray;
+                    }

@@ -1,4 +1,4 @@
-<div class="row">
+
  
 
   
@@ -22,34 +22,19 @@
             <kendo-maskedtextbox
             #input 
             id="item-id" 
-            required 
+           
             [ngModel]="item.itemId"
             name="itemId"
+            (focus)="disableAdd()"
+            (focus)="clearValid()"
             (blur)="codeCheck(input.value)"
             [includeLiterals]="includeLiterals"
-            [mask]="mask"
-              >
+            [mask]="mask">
             </kendo-maskedtextbox> 
-        
                  <div *ngIf="show" >
-  <p>Invalid Code</p>
-</div>
+                      Invalid Code
+                 </div>
           </div>
-
-          <!--input type="text"
-          #input  
-          id="item-id" 
-          required 
-          class="form-control"
-          [ngModel]="item.itemId"
-          name="itemId"
-          (blur)="onLeave(input.value)"
-        
-          (focus)="input.value=null"
-           
-         
-         -->
-
         </div> 
     
         <div class="col-xs-2 form-group" 
@@ -62,43 +47,36 @@
           [value]="valueN"
             [min]="min"
          [max]="max"
-          [ngModel]="item.qty"
+          [(ngModel)]="item.qty"
           name="qty" 
           [format]="'n0'"    
-         (focus)="isAdd.endabled"
+     
          [disabled]="show"
-          (blur)="stockCheck(input.value,qty.value)"
-           
+      
+      
+         (valueChange)="stockCheck(input.value,qty.value)"
+           (blur)="stockCheck(input.value,qty.value)"
+          
               ></kendo-numerictextbox>
               <div *ngIf="showII" >
-  <p>Invalid Qty</p>
-</div>
+                 <p>Invalid Qty</p>
+              </div>
           </div>   
-          <!--input type="text"
-          #qty 
-          id="item-qty" 
-          required 
-          class="form-control"
-          [ngModel]="item.qty"
-          name="qty" 
-          [disabled]="show"
-          (blur)="qty.value=null"
           
-         
-          -->
-            <div class="col-xs-2 form-group" 
+            <div   *ngIf="isAdd" class="col-xs-2 form-group" 
              style="display: inline-block; width:80px; margin-top:25px; margin-left:10px">
                  <button  #add
           type="submit" 
             
                 class="btn btn-info btn-sm" 
-             (click)="input.focus()"
-                *ngIf="isAdd"
+             
+             
               [disabled]="!f.valid"
               [disabled]="showII"
-              
+              [disabled]="show"
+              *ngIf="!noAdd"
              
-            
+              
                 >Add</button>
                </div>
       </div>
@@ -126,40 +104,74 @@
                 (click)="onClear()"
                 >clear</button>
         </div>
+        
       </div>
     
-      
+     <div class="row">
+       <div class=" col-xs-12 text-right ">
+    
+        			<strong>Total:   <span class="badge" 
+              style="line-height: 2;background-color:green;
+                   font-size:13.6px; font-weight:bolder;"> 
+                {{totalAmount}} Dh </span></strong>
+    					<strong> Total BP:   <span class="badge" 
+                  style=" background-color:orange ;line-height: 2;
+                   font-size:13.6px; font-weight:bolder"> 
+                {{totalBp}} BP </span></strong> 
+    					<strong>Qty Total:
+                <span class="badge" 
+              style="line-height: 2;background-color:teal;
+                   font-size:13.6px; font-weight:bolder"> 
+                {{totalQty}} Pcs </span>
+                </strong><br>
+              </div>
+              </div>
+           
     </form>
+    
  <div class="container ">
+ 
      <div class="row">
         <div class="col-xs-12">
-      <button type="button"  
+        <button type="button"  
                 class="btn btn-warning btn-sm pull-right" 
-               
+                style="margin-right: 20px;"
                 *ngIf="isAdd"
                 (click)="onSave()"
+                [disabled]="isSave"
+                
                 >Save</button>
-    		<hr>
-    		<div class="row">
-    	
-    			<div class="col-xs-12 text-right">
-    				<address>
-              <strong>{{CurrentDate | date : 'shortDate'}}</strong><br>
-        			<strong>{{totalAmount}} Dh:Total</strong><br>
-    					<strong>{{totalBp}}: BP Total</strong> <br>
-    					<strong>{{totalQty}}: Quantity Total</strong><br>
-    					
-    				</address>
-           
-    			</div>
-    		</div>
-    	
-    	</div>
+ 
     </div>
-	
+
 </div>
 
 </div>
 </div>
 
+   <!--input type="text"
+          #qty 
+          id="item-qty" 
+          required 
+          class="form-control"
+          [ngModel]="item.qty"
+          name="qty" 
+          [disabled]="show"
+          (blur)="qty.value=null"
+          
+         
+          -->
 
+          <!--input type="text"
+          #input  
+          id="item-id" 
+          required 
+          class="form-control"
+          [ngModel]="item.itemId"
+          name="itemId"
+          (blur)="onLeave(input.value)"
+        
+          (focus)="input.value=null"
+           
+         
+         -->

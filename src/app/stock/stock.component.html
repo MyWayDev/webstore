@@ -1,3 +1,41 @@
-<p>
-  stock works!
-</p>
+ 
+ 
+   <input id="search-input" class="form-control col-sm-6" placeholder="Search"
+          (keyup)="search(input.value)" #input>
+          <i class="fa fa-search errspan" aria-hidden="true"></i>
+        <br>
+        <br>
+         <br>
+        
+   <kendo-grid [data]="filtered" [selectable]="true"
+          
+          (edit)="editHandler($event)"
+          (cancel)="cancelHandler($event)"
+          (save)="saveHandler($event)"
+        
+         
+          
+          [height]="510"
+          >
+         
+             <kendo-grid-column field="productId" title="Id" width="25" [editable]="false"
+            [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
+              [style]="{'background-color': '#888','color': '#fff'}"
+              >
+            </kendo-grid-column>
+            <kendo-grid-column field="name" title="Name" width="100">
+            </kendo-grid-column>
+            
+            <kendo-grid-column field="price" title="Price"  width="25" editor="numeric">
+            </kendo-grid-column>
+            <kendo-grid-column field="stock" title="In stock" width="25" editor="numeric">
+            </kendo-grid-column>
+            <kendo-grid-command-column title="command" width="35">
+              <ng-template kendoGridCellTemplate let-isNew="isNew">
+                <button kendoGridEditCommand class="k-primary">Edit</button>
+                
+                <button class="btn btn-success btn-sm" kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+                <button class="btn btn-default btn-sm"  kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+              </ng-template>
+            </kendo-grid-command-column>  
+        </kendo-grid>

@@ -20,7 +20,7 @@
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/shopping-list']">
-          Shopping
+          Shopping 
           </a>
         </li>
         <li routerLinkActive="active">
@@ -28,6 +28,8 @@
           Dashboard
           </a>
         </li>
+         
+        
          <li routerLinkActive="active">
           <a [routerLink]="['/login']"
           *ngIf="!authInfo?.isLoggedIn()"
@@ -41,6 +43,36 @@
           Logout
           </a>
         </li>
+
+        <ul  class="nav navbar-nav navbar-right"
+        *ngIf=
+           "authInfo?.$uid=='oWKEe7N1dJXCbW2QoMhhWxRtWJG2' || authInfo?.$uid=='fw2gsTBZU7Sq6dNM1ZH6QG8EBrr1'"
+        >
+        <li class="dropdown" mwDropdown>
+          <a class="dropdown-toggle" 
+             role="button" 
+             aria-haspopup="true" 
+             aria-expanded="false">
+             Admin
+             <span class="caret">
+             </span>
+          </a>
+          <ul class="dropdown-menu">
+           <li routerLinkActive="active">
+          <a [routerLink]="['/stock']" >
+          Stock Control
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/backend']">
+          Backend
+          </a>
+        </li>
+          
+          </ul>
+        </li>
+      </ul>
+
       </ul>
       
       

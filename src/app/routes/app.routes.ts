@@ -7,7 +7,10 @@ import { CanActivate, RouterModule, Routes } from '@angular/router';
 import {AppComponent} from '../app.component';
 import { CatalogeComponent } from '../cataloge/cataloge.component';
 import { SlsComponent } from '../sls/sls.component';
+import {StockComponent} from '../stock/stock.component'
 import { LoginComponent } from '../login/login.component';
+import {BackendComponent} from '../backend/backend.component';
+import {backendRoutes} from './backend.routes';
 
 
 export const router:Routes = [
@@ -34,6 +37,17 @@ export const router:Routes = [
         path:'dashboard', 
         component:DashboardComponent,
         children:ordersRoutes,
+         canActivate:[AuthGuard]
+    },
+       { 
+        path:'stock', 
+        component:StockComponent,
+        canActivate:[AuthGuard]
+    },
+       { 
+        path:'backend', 
+        component:BackendComponent,
+        children:backendRoutes,
          canActivate:[AuthGuard]
     },
     { 

@@ -1,6 +1,8 @@
+import { SlsService } from '../../services/sls.service';
 import { AuthInfo } from '../../login/authinfo';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-menu',
@@ -9,10 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 authInfo:AuthInfo;
-  constructor(private authService:AuthService) { }
+
+
+  constructor(private authService:AuthService,private sls:SlsService) {
+
+  
+    
+   }
 
   ngOnInit() {
-    this.authService.authInfo$.subscribe(authInfo=>this.authInfo=authInfo)
+    this.authService.authInfo$.subscribe(authInfo=>this.authInfo=authInfo);
+  
     
   }
 logOut(){

@@ -12,12 +12,14 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
   <!--"-->
   <div class="col-xs-10">
     <app-sls-add [item]="selectedItem" 
-                (cleared)="onCleared()">
+                (cleared)="onCleared()"
+                 
+                
+                >
+               
     </app-sls-add>
-    <hr>
- 
-    <h5>{{desc}}</h5>
-    <div class="bs-component">
+  
+    <!--div class="bs-component">
 <table class="table table-striped table-hover">
     <thead>
       <tr class="info">
@@ -48,12 +50,12 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
   </div>
   
  </div>
-</div>
-<!--div class="container">
+</div-->
+<div class="container">
   
     
     <div class="row">
-    	<div class="col-md-12">
+    	<div class="col-xs-12">
     		<div class="panel panel-default">
     			<div class="panel-heading">
     				<h3 class="panel-title"><strong>Order summary</strong></h3>
@@ -65,35 +67,30 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
                                 <tr>
         							<td><strong>Item</strong></td>
         							<td class="text-center"><strong>Price</strong></td>
+                      <td class="text-center"><strong>BP</strong></td>
         							<td class="text-center"><strong>Quantity</strong></td>
+                      <td class="text-center"><strong>Total Bp</strong></td>
         							<td class="text-right"><strong>Totals</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
     							
-    							<tr *ngFor="let item of items" (click)="onSelectItem(item)">
-    								<td>{{item.itemId}}</td>
+    							<tr #grid *ngFor="let item of items" (click)="onSelectItem(item)"
+                    (click)="grid.style='background-color:pink;'"
+                    
+                  (mouseleave)="grid.style='background-color:white;'"
+                
+
+                  
+                
+                  
+                  >
+    								<td><strong>{{item.itemId}}</strong></td>
     								<td class="text-center">{{item.price}}</td>
+                    <td class="text-center">{{item.bp}}</td>
     								<td class="text-center">{{item.qty}}</td>
+                    	<td class="text-center">{{item.bp*item.qty}}</td>
     								<td class="text-right">{{item.price*item.qty}}</td>
-    							</tr>
-    							<tr>
-    								<td class="thick-line"></td>
-    								<td class="thick-line"></td>
-    								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-    								<td class="thick-line text-right">$670.99</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Shipping</strong></td>
-    								<td class="no-line text-right">$15</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Total</strong></td>
-    								<td class="no-line text-right">$685.99</td>
     							</tr>
     						</tbody>
     					</table>
@@ -102,7 +99,8 @@ import { Component, OnInit, style, OnChanges } from '@angular/core';
     		</div>
     	</div>
     </div>
-</div-->
+</div>
+
   `,
   styles: []
 })
@@ -113,6 +111,8 @@ export class SlsComponent implements OnInit {
   products:Product[];
   desc:string;
   itemImg:Product;
+  styleStatus:boolean=false;
+  isAdded:boolean;
  
   constructor(private catalogeService:CatalogeService ,private sls:SlsService) {}
 
@@ -126,12 +126,15 @@ export class SlsComponent implements OnInit {
  
   onSelectItem(item:InvoiceDetails){
     this.selectedItem=item;
+    this.styleStatus=true;
+
   }
   
 
 
   onCleared(){
     this.selectedItem = null;
+  
   }
 
           

@@ -1,3 +1,4 @@
+import { NoInputRenameRule } from 'codelyzer';
 import { InvoiceDetails } from '../models/invoice-details';
 import { SlsService } from '../services/sls.service';
 import { ResultFunc } from '@angular-cli/ast-tools/node_modules/rxjs/observable/GenerateObservable';
@@ -58,20 +59,36 @@ import { CatalogeService } from '../services/cataloge.service';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
 
+  public autoCorrect: boolean = true;
+   public min: number = 1;
+    public max: number = 99;
+    public valueN: number = 1;
+
+    show:boolean;
+   showII:boolean=false;
+ 
   selectedItem:Product;
   itemIndex:string;
-
+products:Product[];
   invoiceItem:InvoiceDetails;
   subscription: Subscription;
   isq;
-  q:number = 0;
+  q:number=1;
+  stock:number;
+  invoiceDetails:InvoiceDetails;
+  totalBp:number=0;
+  totalAmount:number=0;
 
 
   constructor(private catalogeService:CatalogeService,
               private af:AngularFire,
               private router:Router,
               private route:ActivatedRoute,
-              private sls:SlsService){}
+              private sls:SlsService){
+                this.invoiceDetails = this.sls.getItems();
+            
+
+              }
               
 
   ngOnInit() {
@@ -82,13 +99,29 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
                         this.selectedItem = this.catalogeService
                                             .getItem(this.itemIndex)
                                             .subscribe(product=>this.selectedItem=product)
-                                        
-                                            })                
+                           this.catalogeService.getProducts()
+                                        .subscribe(cat=>this.products=cat);              
+                                            })      
+                 this.totalBp=this.sls.getTotalBp();
+                 this.totalAmount=this.sls.getTotalAmount();          
             }
 
   ngOnChanges(){
   
-    }
+  }
+  stockCheck(id:string, qty:number){
+  
+ 
+  this.stock=this.products.find(i=>id==i.productId).stock;
+  if(this.stock<qty){
+    this.showII=true;
+  }
+  else{
+    this.showII=false;
+  }
+  console.log('stock',this.stock);
+
+}
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
@@ -101,7 +134,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
     }*/
 
   onAddToInvoice(){
+
+    this.stockCheck(this.selectedItem.productId,this.q)
+if(this.showII==false){
+  console.log('showii',this.showII)
        this.invoiceItem={
+                ref:this.selectedItem.$key,
                itemId:this.selectedItem.productId,
                price:this.selectedItem.price,
                bp:this.selectedItem.bp,
@@ -110,7 +148,20 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
                           };
                 console.log('INVO',this.invoiceItem);
        this.sls.addItem(this.invoiceItem)
-                   }
+          this.totalBp=this.sls.getTotalBp();
+                 this.totalAmount=this.sls.getTotalAmount();
+                   }}
+      itemSelect(input){
+        this.router.navigate(['cataloge/'+input])
+        
+      } 
+
+      toShopping(){
+          this.router.navigate(['/shopping-list/']);
+      }
+
+    
+
   }
 
 
