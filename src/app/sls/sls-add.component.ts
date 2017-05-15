@@ -127,15 +127,7 @@ stockCheck(id:string, qty:number){
 
 }
 
-dupCheck(id:string,item:InvoiceDetails){
-  let z;
-  z=this.sls.getItems().forEach(i=>{
-    if(id==i.itemId){
-      i.qty+item.qty
-      this.sls.editItem(z,item);
-    }
-  })
-}
+
 
 
     constructor(private sls:SlsService,

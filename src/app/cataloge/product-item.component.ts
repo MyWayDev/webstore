@@ -7,6 +7,7 @@ import { Component, Input, Output,EventEmitter,OnInit } from '@angular/core';
   styles:[`
             a{
                 background-color:whitesmoke;
+               
               }
            h5{
           

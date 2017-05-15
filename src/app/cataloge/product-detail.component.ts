@@ -14,7 +14,10 @@ import { CatalogeService } from '../services/cataloge.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styles: [` .flex1 {
+  styles: [`
+
+
+  .flex1 {
                       display: flex;
                     }
                     .flex2 {
@@ -25,7 +28,6 @@ import { CatalogeService } from '../services/cataloge.service';
               -webkit-text-stroke-width: .25px;
               -webkit-text-stroke-color: black;
             }
-
                    #parent {
                     
                       position: relative;
@@ -61,24 +63,25 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
 
   public autoCorrect: boolean = true;
    public min: number = 1;
-    public max: number = 99;
-    public valueN: number = 1;
+    public max: number = 10;
+   
 
-    show:boolean;
-   showII:boolean=false;
- 
+  show:boolean;
+  showII:boolean=false;
+  selected:InvoiceDetails = null;
   selectedItem:Product;
   itemIndex:string;
-products:Product[];
+  products:Product[];
   invoiceItem:InvoiceDetails;
   subscription: Subscription;
   isq;
   q:number=1;
   stock:number;
-  invoiceDetails:InvoiceDetails;
+  invoiceDetails:InvoiceDetails[];
   totalBp:number=0;
   totalAmount:number=0;
 
+duplicate:boolean;
 
   constructor(private catalogeService:CatalogeService,
               private af:AngularFire,
@@ -134,33 +137,72 @@ products:Product[];
     }*/
 
   onAddToInvoice(){
-
+ 
     this.stockCheck(this.selectedItem.productId,this.q)
 if(this.showII==false){
-  console.log('showii',this.showII)
+ 
        this.invoiceItem={
                 ref:this.selectedItem.$key,
                itemId:this.selectedItem.productId,
                price:this.selectedItem.price,
                bp:this.selectedItem.bp,
                qty:this.q
-               //add totals and ref
+             
                           };
-                console.log('INVO',this.invoiceItem);
-       this.sls.addItem(this.invoiceItem)
-          this.totalBp=this.sls.getTotalBp();
-                 this.totalAmount=this.sls.getTotalAmount();
-                   }}
-      itemSelect(input){
+                this.duplicate=false;                
+          for(var i=0;i < this.invoiceDetails.length; i++){
+          
+            if(this.invoiceItem.itemId === this.invoiceDetails[i].itemId ){ 
+              this.duplicate = true;
+              console.log('duplicate',this.duplicate);
+            console.log("Idetails",this.invoiceDetails[i].itemId);
+            console.log("Iitem",this.invoiceItem);
+
+            this.sls.editItem(this.invoiceDetails[i],this.invoiceItem);
+            this.totalBp=this.sls.getTotalBp();
+            this.totalAmount=this.sls.getTotalAmount();
+            this.q=1;
+              }
+
+       
+          
+          }
+
+          if(this.duplicate===false){
+             this.sls.addItem(this.invoiceItem)
+           this.totalBp=this.sls.getTotalBp();
+          this.totalAmount=this.sls.getTotalAmount();
+          this.q=1;
+           console.log('after length',this.invoiceDetails)
+       }
+                  
+}
+                  }
+                  
+      itemRoute(input){
         this.router.navigate(['cataloge/'+input])
-        
+    
+       
       } 
 
       toShopping(){
           this.router.navigate(['/shopping-list/']);
+          
       }
+onDelete(input){
+  this.sls.deleteItem(input);
+  this.totalBp=this.sls.getTotalBp();
+  this.totalAmount=this.sls.getTotalAmount();
+ 
+  
+}
+      onSelectItem(item:InvoiceDetails){
+    this.selected=item;
+  }
 
-    
+
+
+     // this.sls.editItem(z,item);
 
   }
 

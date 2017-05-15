@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-product-bind',
   template: `  
-            <div style="height:610px;width:320px;overflow:auto;
+            <div style="height:610px;width:300px;overflow:auto;
                         color:white;scrollbar-base-color:gold;
                         font-family:sans-serif;padding:1px;">
               <app-product-item
@@ -26,3 +26,4 @@ export class ProductBindComponent implements OnInit {
   }
 
 }
+       
