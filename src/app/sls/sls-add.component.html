@@ -1,155 +1,85 @@
+<div class="col-xs-12">
 
- 
+  <form id="shopping-list-add" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
 
-  
-  <div class="col-xs-12">
-   
-    <form 
-          id="shopping-list-add" 
-          (ngSubmit)="onSubmit(f.value)" 
-          
-          #f="ngForm">
-     
-      <div class="row">
-        <div class="col-xs-2 form-group" 
-             style="display: inline-block; width: 220px;">
+    <div class="row">
+      <div class="col-xs-2 form-group" style="display: inline-block; width: 220px;">
 
-          <label for="item-Id">Id</label>
-          <!--Kendo AutoComplete-->
+        <label for="item-Id">Id</label>
+        <!--Kendo AutoComplete-->
         <div class="example-wrapper">
-          
-              
-            <kendo-maskedtextbox
-            #input 
-            id="item-id" 
-           
-            [ngModel]="item.itemId"
-            name="itemId"
-            (focus)="disableAdd()"
-            (focus)="clearValid()"
-            (blur)="codeCheck(input.value)"
-            [includeLiterals]="includeLiterals"
-            [mask]="mask">
-            </kendo-maskedtextbox> 
-                 <div *ngIf="show" >
-                      Invalid Code
-                 </div>
+
+
+          <kendo-maskedtextbox #input id="item-id" [ngModel]="item.itemId" name="itemId" (focus)="disableAdd()" (focus)="clearValid()"
+            (blur)="codeCheck(input.value)" [includeLiterals]="includeLiterals" [mask]="mask">
+          </kendo-maskedtextbox>
+          <div *ngIf="show">
+            Invalid Code
           </div>
-        </div> 
-    
-        <div class="col-xs-2 form-group" 
-             style="display: inline-block; width:80px;">
-              <label for="item-qty">Qty</label>
-              <kendo-numerictextbox  style="width:80px"
-               #qty 
-          id="item-qty" 
-         [autoCorrect]="autoCorrect"
-          [value]="valueN"
-            [min]="min"
-         [max]="max"
-          [(ngModel)]="item.qty"
-          name="qty" 
-          [format]="'n0'"    
-     
-         [disabled]="show"
-      
-      
-         (valueChange)="stockCheck(input.value,qty.value)"
-           (blur)="stockCheck(input.value,qty.value)"
-          
-              ></kendo-numerictextbox>
-              <div *ngIf="showII" >
-                 <p>Invalid Qty</p>
-              </div>
-          </div>   
-          
-            <div   *ngIf="isAdd" class="col-xs-2 form-group" 
-             style="display: inline-block; width:80px; margin-top:25px; margin-left:10px">
-                 <button  #add
-          type="submit" 
-            
-                class="btn btn-info btn-sm" 
-             
-             
-              [disabled]="!f.valid"
-              [disabled]="showII"
-              [disabled]="show"
-              *ngIf="!noAdd"
-             
-              
-                >Add</button>
-               </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">   
-       
-        <button 
-                type="submit" 
-                class="btn btn-success btn-xs" 
-               
-               
-                *ngIf="!isAdd"
-                [disabled]="!f.valid"
-                >Save</button>
-          <button type="button"
-                 class="btn btn-danger btn-xs"
-               
-                *ngIf="!isAdd"
-                (click)="onDelete()"
-                >Delete</button>
-          <button type="button"  
-                class="btn btn-info btn-xs" 
-               
-                *ngIf="!isAdd"
-                (click)="onClear()"
-                >clear</button>
         </div>
-        
       </div>
-    
-     <div class="row">
-       <div class=" col-xs-12 text-right ">
-    
-        			<strong>Total:   <span class="badge" 
+
+      <div class="col-xs-2 form-group" style="display: inline-block; width:80px;">
+        <label for="item-qty">Qty</label>
+        <kendo-numerictextbox style="width:80px" #qty id="item-qty" [autoCorrect]="autoCorrect" [value]="valueN" [min]="min" [max]="max"
+          [(ngModel)]="item.qty" name="qty" [format]="'n0'" [disabled]="show" (valueChange)="stockCheck(input.value,qty.value)"
+          (blur)="stockCheck(input.value,qty.value)"></kendo-numerictextbox>
+        <div *ngIf="showII">
+          <p>Invalid Qty</p>
+        </div>
+      </div>
+
+      <div *ngIf="isAdd" class="col-xs-2 form-group" style="display: inline-block; width:80px; margin-top:25px; margin-left:10px">
+        <button #add type="submit" class="btn btn-info btn-sm" [disabled]="!f.valid" [disabled]="showII" [disabled]="show" *ngIf="!noAdd">Add</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+
+        <button type="submit" class="btn btn-success btn-xs" *ngIf="!isAdd" [disabled]="!f.valid">Save</button>
+        <button type="button" class="btn btn-danger btn-xs" *ngIf="!isAdd" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-info btn-xs" *ngIf="!isAdd" (click)="onClear()">clear</button>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class=" col-xs-12 text-right ">
+
+        <strong>Total:   <span class="badge" 
               style="line-height: 2;background-color:green;
                    font-size:13.6px; font-weight:bolder;"> 
                 {{totalAmount}} Dh </span></strong>
-    					<strong> Total BP:   <span class="badge" 
+        <strong> Total BP:   <span class="badge" 
                   style=" background-color:orange ;line-height: 2;
                    font-size:13.6px; font-weight:bolder"> 
-                {{totalBp}} BP </span></strong> 
-    					<strong>Qty Total:
+                {{totalBp}} BP </span></strong>
+        <strong>Qty Total:
                 <span class="badge" 
               style="line-height: 2;background-color:teal;
                    font-size:13.6px; font-weight:bolder"> 
                 {{totalQty}} Pcs </span>
                 </strong><br>
-              </div>
-              </div>
-           
-    </form>
-    
- <div class="container ">
- 
-     <div class="row">
-        <div class="col-xs-12">
-        <button type="button"  
-                class="btn btn-warning btn-sm pull-right" 
-                style="margin-right: 20px;"
-                *ngIf="isAdd"
-                (click)="onSave()"
-                [disabled]="isSave"
-                
-                >Save</button>
- 
+      </div>
     </div>
 
+  </form>
+
+  <div class="container ">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-warning btn-sm pull-right" style="margin-right: 20px;" *ngIf="isAdd" (click)="onSave()"
+          [disabled]="isSave">Save</button>
+
+      </div>
+
+    </div>
+
+  </div>
 </div>
 
-</div>
-</div>
-
-   <!--input type="text"
+<!--input type="text"
           #qty 
           id="item-qty" 
           required 
@@ -162,7 +92,7 @@
          
           -->
 
-          <!--input type="text"
+<!--input type="text"
           #input  
           id="item-id" 
           required 

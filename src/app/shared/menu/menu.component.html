@@ -1,24 +1,23 @@
-<nav class="navbar navbar-default" >
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
- 
-      <a class="navbar-brand" 
-       >
+
+      <a class="navbar-brand">
          <img src="https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2Flogo-01.png?alt=media&token=c31f6502-4c41-4e63-b0b2-01d2e17b1a85" 
               alt=""
               style="margin-top: -12px; margin-left:-10px;">
       </a>
-    </div> 
+    </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div >
-      <ul class="nav navbar-nav">   
+    <div>
+      <ul class="nav navbar-nav">
         <li routerLinkActive="active">
           <a [routerLink]="['/cataloge']">
             Cataloge
           </a>
         </li>
-        <li routerLinkActive="active">
+        <!--li routerLinkActive="active">
           <a [routerLink]="['/shopping-list']">
           Shopping 
           </a>
@@ -27,59 +26,52 @@
           <a [routerLink]="['/dashboard']">
           Dashboard
           </a>
-        </li>
-         
-        
-         <li routerLinkActive="active">
-          <a [routerLink]="['/login']"
-          *ngIf="!authInfo?.isLoggedIn()"
-          >
+        </li-->
+
+
+        <li routerLinkActive="active">
+          <a [routerLink]="['/login']" *ngIf="!authInfo?.isLoggedIn()">
           Login
           
           </a>
         </li>
-         <li>
-          <a *ngIf="authInfo?.isLoggedIn()" (click)="logOut()" >
+        <li>
+          <a *ngIf="authInfo?.isLoggedIn()" (click)="logOut()">
           Logout
           </a>
         </li>
 
-        <ul  class="nav navbar-nav navbar-right"
-        *ngIf=
-           "authInfo?.$uid=='oWKEe7N1dJXCbW2QoMhhWxRtWJG2' || authInfo?.$uid=='fw2gsTBZU7Sq6dNM1ZH6QG8EBrr1'"
-        >
-        <li class="dropdown" mwDropdown>
-          <a class="dropdown-toggle" 
-             role="button" 
-             aria-haspopup="true" 
-             aria-expanded="false">
+        <!--ul class="nav navbar-nav navbar-right" *ngIf="authInfo?.$uid=='oWKEe7N1dJXCbW2QoMhhWxRtWJG2' || authInfo?.$uid=='fw2gsTBZU7Sq6dNM1ZH6QG8EBrr1'">
+          <li class="dropdown" mwDropdown>
+            <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
              Admin
              <span class="caret">
              </span>
           </a>
-          <ul class="dropdown-menu">
-           <li routerLinkActive="active">
-          <a [routerLink]="['/stock']" >
+            <ul class="dropdown-menu">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/stock']">
           Stock Control
           </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/backend']">
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/backend']">
           Backend
           </a>
-        </li>
-          
-          </ul>
-        </li>
-      </ul>
+              </li>
+
+            </ul>
+          </li>
+        </ul-->
 
       </ul>
-      
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
 </nav>
 <div class="container">
-  <router-outlet></router-outlet>    
+  <router-outlet></router-outlet>
 </div>
-

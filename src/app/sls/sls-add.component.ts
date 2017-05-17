@@ -1,6 +1,4 @@
 
-
-import { map } from '@angular-cli/ast-tools/node_modules/rxjs/operator/map';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
 import { Invoice } from '../models/invoice';
@@ -133,8 +131,8 @@ stockCheck(id:string, qty:number){
     constructor(private sls:SlsService,
   private catalogeService:CatalogeService,
    private af:AngularFire,
-  private authService:AuthService){
-    this.uid=this.authService.authInfo$.value.$uid;
+  ){
+   
 }
 
   handleFilter(value) {
@@ -150,7 +148,7 @@ stockCheck(id:string, qty:number){
      this.totalAmount=this.sls.getTotalAmount();
      this.totalBp=this.sls.getTotalBp();
      this.totalQty = this.sls.getTotalQty();
-     this.user=this.sls.getUid(this.uid).subscribe(uid=>this.user=uid);
+   
     
    
     }

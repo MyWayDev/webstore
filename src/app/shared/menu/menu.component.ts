@@ -1,3 +1,4 @@
+
 import { SlsService } from '../../services/sls.service';
 import { AuthInfo } from '../../login/authinfo';
 import { AuthService } from '../../services/auth.service';
@@ -25,6 +26,8 @@ authInfo:AuthInfo;
     
   }
 logOut(){
+  
   this.authService.logOut();
+  
 }
 }

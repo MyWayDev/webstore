@@ -11,6 +11,7 @@ import {StockComponent} from '../stock/stock.component'
 import { LoginComponent } from '../login/login.component';
 import {BackendComponent} from '../backend/backend.component';
 import {backendRoutes} from './backend.routes';
+import {OrderComponent} from'../order/order.component';
 
 
 export const router:Routes = [
@@ -25,8 +26,15 @@ export const router:Routes = [
         path:'cataloge', 
         component:CatalogeComponent,
         children:productRoutes,
+         canActivate:[AuthGuard]
         
       
+    },
+        { 
+        path:'order', 
+        component:OrderComponent,
+        canActivate:[AuthGuard]
+        
     },
     { 
         path:'shopping-list', 

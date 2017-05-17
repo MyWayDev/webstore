@@ -1,169 +1,103 @@
+<div class="panel-heading resume-heading">
+  <div class="row">
+    <div class="col-xs-10">
+      <figure>
+        <div class="col-xs-5">
+          <img id="image1" src="{{selectedItem?.productImg}}" style="display: block; max-height: 285px;" alt="">
+          <img id="image2" src="{{selectedItem?.promoImg}}" style="display:
+           inline-block; max-height: 65px;" alt="" #promoimg>
 
-     
-      <div class="panel-heading resume-heading">
-                  <div class="row">
-                     <div class="col-xs-10">        
-                           <figure>
-                              <div class="col-xs-5  " >
-                              <img 
-                                    id="image1" 
-                                    src="{{selectedItem?.productImg}}"                                 
-                                    style="display: block; max-height: 285px;" 
-                                    alt="">
-                                    <img  id="image2"
-                                    src="{{selectedItem?.promoImg}}"  
-                                    style="display: inline-block; max-height: 65px;" 
-                                    alt="" 
-                                    #promoimg 
-                                    (mouseover)="promoimg.style='max-height: 72px; opacity: 1;
-                                                  filter: alpha(opacity=1); '" 
-                                    (mouseleave)="promoimg.style='max-height: 72px; opacity: 0.5;
-                                                  filter: alpha(opacity=50);'">
-                         
-                            <!--p class="pull-right" style="font-size:16px; font-weight:bold;">{{selectedItem?.desc}}</p-->
-                           
-                                 
-                                    <img id="image3" *ngIf="selectedItem.isNew"
-                                      style="display: block; max-height: 50px;"
-                                      class="span4"  
-                                    src="https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/promo%2Fnew.png?alt=media&token=efca7b41-51bc-4ddc-9c28-64e72c4f4b5e"   
-                                    alt="">
-                                </div>   
-                           </figure>                       
-                        
-                       
-                        <div class="col-xs-7">
-                           <ul class="list-group" >
-                              <li class="list-group-item" style="background-color:orange; ">
-                                 <h3 style="font-weight:bolder;color:darkred;" >
-                                                    {{selectedItem?.productId}}</h3>
-                                                    </li>
-                              <li class="list-group-item" style="background-color:aliceblue">
-                                <h5 style="font-weight:bolder">Price:&nbsp;&nbsp;&nbsp;{{selectedItem?.price}}&nbsp;Dh&nbsp;<i class="fa fa-money fa-rotate-90" aria-hidden="true"></i></h5>
-                              </li>
-                              <li class="list-group-item">
-                                <h5 style="font-weight:bolder">BP:&nbsp;&nbsp;&nbsp; {{selectedItem?.bp}}&nbsp;<i class="fa fa-sitemap" aria-hidden="true"></i></h5>
-                                 </li>
-                              <li class="list-group-item" style="background-color:aliceblue">
-                               <h5 style="font-weight:bolder">Size:&nbsp;&nbsp;&nbsp;{{selectedItem?.size}}&nbsp;<i class="fa fa-th-list" aria-hidden="true"></i></h5>
-                               </li>
-                                 <!--li class="list-group-item">
+          <img id="image3" *ngIf="selectedItem.isNew" style="display: block; max-height: 50px;" class="span4" src="https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/promo%2Fnew.png?alt=media&token=efca7b41-51bc-4ddc-9c28-64e72c4f4b5e"
+            alt="">
+        </div>
+      </figure>
+
+      <div class="col-xs-7">
+        <ul class="list-group">
+          <li class="list-group-item" style="background-color:orange; ">
+            <h3 style="font-weight:bolder;color:darkred;">
+              {{selectedItem?.productId}}</h3>
+          </li>
+          <li class="list-group-item" style="background-color:aliceblue">
+            <h5 style="font-weight:bolder">Price:&nbsp;&nbsp;&nbsp;{{selectedItem?.price}}&nbsp;Dh&nbsp;<i class="fa fa-money fa-rotate-90" aria-hidden="true"></i></h5>
+          </li>
+          <li class="list-group-item">
+            <h5 style="font-weight:bolder">BP:&nbsp;&nbsp;&nbsp; {{selectedItem?.bp}}&nbsp;<i class="fa fa-sitemap" aria-hidden="true"></i></h5>
+          </li>
+          <li class="list-group-item" style="background-color:aliceblue">
+            <h5 style="font-weight:bolder">Size:&nbsp;&nbsp;&nbsp;{{selectedItem?.size}}&nbsp;<i class="fa fa-th-list" aria-hidden="true"></i></h5>
+          </li>
+          <!--li class="list-group-item">
                                <h5 style="font-weight:bolder">Stock:&nbsp;&nbsp;&nbsp;{{selectedItem?.stock}}&nbsp;<i class="fa fa-archive" aria-hidden="true"></i></h5>
                                </li-->
-                             
-                              <img src="" alt="">
-                              <p class="flex1">
+
+          <img src="" alt="">
+       <br>
+          <kendo-numerictextbox  #qty id="item-qty" [autoCorrect]="autoCorrect" 
+                                [min]="min" [max]="max" [(ngModel)]='q'
+                                name="qty" [format]="'n0'" [disabled]="show"
                                 
-                          <!--input type="text" class="form-control flex2" placeholder="0"
-                              type="text" #qty [(ngModel)]="q" 
-                              required
-                              pattern="^[0-9]"
-                              titl = "only digits"
-                              (keyup.enter)="qty.value=0"--> </p>
-                          
-                           <kendo-numerictextbox  style="width:180px"
-                                  
-                                  #qty
-                                  id="item-qty" 
-                                  [autoCorrect]="autoCorrect"
-                               
-                                  [min]="min"
-                                  [max]="max"
-                                   [(ngModel)]='q'
-                                    name="qty" 
-                                    [format]="'n0'"    
-                                  
-                                  [disabled]="show"
-                                  
-                                    
-                           ></kendo-numerictextbox>
-                           
-                               <button
-                                             
-                                              class="btn btn-primary btn-sm" 
-                                              (click)="onAddToInvoice()" 
-                                             
-                                            
-                                            
-                                            
-                                              >ADD</button>
-                                            <div *ngIf="showII" style="color:brown; font-size:16px;" >
-                            {{stock}}  الكمية المتاحة
-                            </div>  
-                           </ul>
-                           
-                                
-                        </div>
-      
-                     </div>
-                  </div>
-               </div>
-               
-              
-                         <div class="col-xs-10">               
-                       <div class="panel panel-secondary " style="overflow-y:scroll; max-height:335px;" *ngIf="invoiceDetails.length>0">
-  <!-- Default panel contents -->
-  <div class="panel-heading">
-     <strong class=""><span style="background-color:white;font-size:16px;line-height: 1.5;color:maroon;"
-             class="badge badge-pill  pull-right">{{totalBp}} Bp</span></strong>
-   
-    <strong class=""><span style="background-color:white;font-size:16px;line-height: 1.5;color:maroon;"
-            class="badge badge-pill  pull-right">{{totalAmount}} Dh</span></strong>
+                                >
+          </kendo-numerictextbox>
+
+          <button class="btn btn-info btn-sm" (click)="onAddToInvoice()">ADD</button>
+          
+          <div *ngIf="showII" style="color:snow; font-size:16px;display:inline-block;">
+            {{stock}} الكمية المتاحة
+          </div>
+        </ul>
+      </div>
+<div class="col-xs-12">
+  <div class="panel panel-secondary " style="overflow-y:scroll; max-height:335px;" *ngIf="invoiceDetails.length>0">
+    <!-- Default panel contents -->
+ 
+	
+  <div class="container">
+
+  <div class="button" (click)="toShopping()">
+  <div>
+     <p class="pull-left" style="color:snow;font-size:14px;">انهاء الطلبية</p>
+  <p class="pull-right" style="color:snow;font-size:14px;">{{totalAmount}} Dh   {{totalBp}} Bp</p>
   </div>
-   <strong><button class="btn btn-success btn-sm"
-   (click)="toShopping()"
-   >save</button></strong>
-  <!-- Table -->
-	<div class="table-responsive">
-    					<table class="table table-sm  table-striped table-hover">
-    						<thead class="thead-inverse">
-                      <tr>
-                      <td>
-                      </td>            
-        							<td class="text-center"><strong>Item</strong></td>
-        							<td class="text-center"><strong>Quantity</strong></td>
-                    </tr>
-    						</thead>
-    						<tbody>
-    							<tr  *ngFor="let item of invoiceDetails" 
-                  (click)="itemRoute(item.itemId)"
-                    (click)="onSelectItem(item)"
-                  
-                 
-                    >
-                  <td  class="text-center">
-                    <span>
+  </div>
+</div>
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-xs table-responsive  table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <td></td>  
+            <td class="text-center"><strong>كود</strong></td>
+            <td class="text-center"><strong>الكمية</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of invoiceDetails" (click)="itemRoute(item.itemId)" (click)="onSelectItem(item)">
+            <td class="text-center">
+              <span>
                      <img 
                       src=
                       "https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/cat%2F{{item.itemId}}.png?alt=media&token=afbdc43b-86f2-48a6-af60-6ecb751fcaef"  
                       style="max-height: 55px;"       
                       class="img-fluid" alt=""/>
                     </span>
-                  </td>
-    								<td #i  class="text-center" style="padding-top:25px;" ><strong>{{item.itemId}}</strong></td>
-    								<td class="text-center"style="padding-top:25px;">
-                      <span style="font-size:14px;line-height: 1.5;"
-                       class="badge badge-pill">{{item.qty}}</span></td>
-                    <td  class="text-center"style="padding-top:25px;">
-                      <button type="button" class="btn-danger btn-xs"
-                      *ngIf="selectedItem.productId==item.itemId"
-                       (click)="onDelete(selected)"
-                     
-                      >
+            </td>
+            <td #i class="text-center" style="padding-top:25px;"><strong>{{item.itemId}}</strong></td>
+            <td class="text-center" style="padding-top:25px;">
+              <span style="font-size:14px;line-height: 1.5;" class="badge badge-pill">{{item.qty}}</span></td>
+            <td class="text-center" style="padding-top:25px;">
+              <button type="button" class="btn-danger btn-xs" *ngIf="selectedItem.productId==item.itemId" (click)="onDelete(selected)">
                         <i class="fa fa-window-close" aria-hidden="true"></i>
                       </button>
-                    </td>
-    							</tr>
-    						</tbody>
-    					</table>
-    				</div>
-</div>  
-          </div>  
-               
-              
-                      
-   
-       
-
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
 
 

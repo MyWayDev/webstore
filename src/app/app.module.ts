@@ -52,6 +52,7 @@ import { BackendBindComponent } from './backend/backend-bind.component';
 import { DropdownDirective } from './shared/dropdown.directive';
  import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
 import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -80,6 +81,7 @@ import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
     BackendDetailComponent,
     BackendBindComponent,
     DropdownDirective,
+    OrderComponent,
    
     
   ],
