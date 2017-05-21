@@ -26,7 +26,22 @@ export class InvoiceService {
     this.folder = 'deposits';
 
   }
-
+updateCheck(key:string,check:boolean){
+   this.af.database.object('/invoices/' + key)
+            .update({
+              
+              checked: check
+             
+            });
+}
+           updateOn(key:string,check:boolean){
+   this.af.database.object('/invoices/' + key)
+            .update({
+              
+             on: check
+             
+            });
+          }
   updateDeposit(key: string, depositNumber: string) {
     let storageRef = firebase.storage().ref()
     for (let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]) {

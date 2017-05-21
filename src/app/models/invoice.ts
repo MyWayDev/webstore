@@ -15,6 +15,7 @@ public depositNumber?:string,
 public depositImg?:string,
 public pending?:boolean,
 public checked?:boolean,
+public on?:boolean,
 public adminFee?:number,
 public shippingFee?:number,
 public invoiceDetails?:InvoiceDetails[]
@@ -23,13 +24,13 @@ public invoiceDetails?:InvoiceDetails[]
 
     static fromJsonInvoice({$key,addDate,uid,memberId,
                         totalQty,totalBp,totalAmount,
-                        depositNumber,depositImg,pending,checked,adminFee,shippingFee,
+                        depositNumber,depositImg,pending,checked,on,adminFee,shippingFee,
                         invoiceDetails
                     }):Invoice{
                          return new Invoice(
                         $key,addDate,uid,memberId,
                         totalQty,totalBp,totalAmount,
-                        depositNumber,depositImg,pending,checked,adminFee,shippingFee,
+                        depositNumber,depositImg,pending,checked,on,adminFee,shippingFee,
                         invoiceDetails
                     );
                  }

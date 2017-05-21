@@ -10,6 +10,13 @@
         
        <div class=" col-sm-6 col-xs-6 ">
             <div class="col-xs-6">
+               <img class="img-responsive pull-right" 
+               *ngIf="invoice.checked"
+         src=" https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2FApprove_icon.png?alt=media&token=070d31fd-bba5-4775-95a2-603f2c3a90c0"  
+            style="max-height: 38px;" 
+         
+         alt=""/>
+             
             <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
               <span><p style="font-size:12px; font-weight:bold;">{{invoice?.$key}}</p></span>  
                      <span class=" pull-right "> 
@@ -56,9 +63,9 @@
 <form 
 >
 
-<div class="col-xs-4" style="font-size: 11px;">
+<div class="col-xs-8" style="font-size: 11px;">
  <label #ideposit for="">Deposit Number: {{invoice.depositNumber}}</label>
- <div class="col-xs-4 form-group" 
+ <div class="col-xs-6 form-group" 
              style="display: inline-block; width: 220px;">
   <input
   *ngIf="invoice.pending"
@@ -67,7 +74,8 @@
   name="depositNumber"
   [(ngModel)]="depositNumber"
   style="color:black">
-   <button *ngIf="invoice.pending" (click)="update()" 
+  
+   <!--button *ngIf="invoice.pending" (click)="update()" 
             class="btn btn-xs btn-success  " name="submit" type="submit">
     Save</button>
      <button *ngIf="invoice.pending" (click)="remove()" 
@@ -77,12 +85,37 @@
          <div >
     <input *ngIf="invoice.pending" id="image" name="image" [(ngModel)]="depositImg" type="file">
      
-  </div>
- 
+  </div-->
+ <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; font-size:9;">
+    <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+     <label >{{currentUpload?.progress}}% Complete</label>
+</div>
+
+
+<div class="box">
+    <label>
+       <input [(ngModel)]="depositImg" *ngIf="invoice.pending" id="image" name="image" type="file" class="button" (change)="detectFiles($event)">
+    </label>
+
+    <button class="btn btn-xs  btn-info"
+            [disabled]="!selectedFiles"
+            (click)="uploadSingle()"
+            *ngIf="invoice.pending" 
+            >
+      Upload
+    </button>
+<button *ngIf="invoice.pending"  (click)="update()" 
+            class="btn btn-xs btn-success  " name="submit" type="submit">
+    Save</button>
+     <button *ngIf="invoice.pending"  (click)="remove()" 
+             class="btn btn-xs btn-danger  " name="submit" type="submit">
+    Remove</button>
+</div>
  </div>
  </div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
+
 
 </form>
     

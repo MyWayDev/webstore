@@ -40,9 +40,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
- import { InputsModule } from '@progress/kendo-angular-inputs';
-import { PopupModule } from '@progress/kendo-angular-popup';
-import { UploadModule } from '@progress/kendo-angular-upload';
+
+
+
 import { StockComponent } from './stock/stock.component';
 import { BackendComponent } from './backend/backend.component';
 import { BackendItemComponent } from './backend/backend-item.component';
@@ -50,11 +50,13 @@ import { BackendListComponent } from './backend/backend-list.component';
 import { BackendDetailComponent } from './backend/backend-detail.component';
 import { BackendBindComponent } from './backend/backend-bind.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import {SwitchModule} from '@progress/kendo-angular-inputs';
  import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
 import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
 import { OrderComponent } from './order/order.component';
-
-
+import { UploadService } from './services/upload.service';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { UiSwitchModule } from 'angular2-ui-switch';
 
 @NgModule({
   declarations: [
@@ -95,13 +97,13 @@ import { OrderComponent } from './order/order.component';
     InputsModule,
     ReactiveFormsModule,
     routes,
-    PopupModule,
-    UploadModule,
+    UiSwitchModule,
     MaskedTextBoxModule, NumericTextBoxModule,
+
     AngularFireModule.initializeApp(firebaseConfig,authConfig)
   
   ],
-  providers: [CatalogeService,SlsService,InvoiceService,AuthService,AuthGuard,StockService],
+  providers: [CatalogeService,SlsService,InvoiceService,AuthService,AuthGuard,StockService,UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

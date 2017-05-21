@@ -67,7 +67,7 @@ CurrentDate = new Date();
 onSave(addDate:Date,memberId:string,
           totalQty:number,totalBp:number,
           totalAmount:number,depositNumber:string,
-          depositImg:string,pending:boolean,checked:boolean,adminFee:number,
+          depositImg:string,pending:boolean,checked:boolean,on:boolean,adminFee:number,
           shippingFee:number,invoiceDetails:Invoice[]
           ){ var created_at= new Date().toString()
            
@@ -82,6 +82,7 @@ onSave(addDate:Date,memberId:string,
                                 depositImg:'',
                                 pending:true,
                                 checked:false,
+                                on:false,
                                 adminFee:this.adminFees,
                                 shippingFee:this.shipFees,                           
                                 invoiceDetails:this.sls.getItems()
