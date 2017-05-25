@@ -16,7 +16,7 @@
          alt=""/>
              
             <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
-              <span><p style="font-size:12px; font-weight:bold;">{{invoice?.$key}}</p>
+              <span><p style="font-size:13px; font-weight:bold; color:darkred;">{{invoice?.$key}}</p>
               </span>  
                      <span class=" pull-right "> 
                       <img class="img-responsive" 
@@ -26,26 +26,27 @@
                     </span> 
             </div>
           
-            <hr style="margin:6px 0 6px 0;">
+            <hr style=" color:darkgoldenrod; margin:6px 0 9px 0;">
     
               
 
-<label style="font-size:13px;">member ID: {{invoice?.memberId}}</label><br>
+<label style="font-size:12px;font-weight:bold;">member ID: {{invoice?.memberId}}</label><br>
 
-<label style="font-size:13px;">Total Amount: {{invoice?.totalAmount}} Dh</label><br>
+<label style="font-size:12px;font-weight:bold;">Total Amount: {{invoice?.totalAmount}} Dh</label><br>
  
-<label style="font-size:13px;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
+<label style="font-size:12px;font-weight:bold;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
  
 
-<label style="font-size:13px;">Item Count: {{invoice?.totalQty}}</label><br>
- <label style="font-size:13px;" *ngIf="!invoice.pending" >Deposit Amount :{{invoice.depositAmount}}</label><br>
- <label style="font-size:13px;" *ngIf="!invoice.pending" >Deposit Date:{{invoice.depositDate | date:'yMMMd'}}</label>
+<label style="font-size:12px;">Item Count: {{invoice?.totalQty}}</label><br>
+<hr style="margin:6px 0 6px 0;">
+ <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending" >Deposit Amount :{{invoice.depositAmount}}</label><br>
+ <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending" >Deposit Date:{{invoice.depositDate | date:'yMMMd'}}</label>
 </a><br>
 
 <form #templateForm="ngForm"
 *ngIf="invoice.pending">
 
- <div style="margin-right:85px;color:black;font-size:15px" class="pull-right" *ngIf="!templateForm.valid">برجاء ادخال مبلغ و تاريخ الايداع</div><br>
+ <div style="margin-right:85px;color:black;font-size:16px" class="pull-right" *ngIf="!templateForm.valid">برجاء ادخال مبلغ و تاريخ الايداع</div><br>
 
 <div >
                 <kendo-numerictextbox
@@ -76,7 +77,7 @@
      
   </div-->
  <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; display:inline-flex;">
-    <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+    <progress  class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
      <label >{{currentUpload?.progress}}% Complete</label>
 </div>
 

@@ -26,11 +26,12 @@ export class InvoiceService {
     this.folder = 'deposits';
 
   }
-updateCheck(key:string,check:boolean){
+updateCheck(key:string,check:boolean,invoiceId:string){
    this.af.database.object('/invoices/' + key)
             .update({
               
-              checked: check
+              checked: check,
+              invoiceId:invoiceId
              
             });
 }

@@ -60,7 +60,7 @@
 
 
 </a>
-<form  *ngIf="invoice.on"
+<form #templateForm="ngForm" *ngIf="invoice.on"
 >
 
 <div class="col-xs-12" style="font-size: 11px;">
@@ -78,8 +78,13 @@
   name="invoiceId"
   [(ngModel)]="invoiceId"
   style="color:black"-->  
-
- <ui-switch  id="checked" name="invoice.checked" (click)="onChecked(invoice.$key,invoice.checked)" color="yellow" switchColor="lightgreen" size="small" [(ngModel)]="invoice.checked"  ></ui-switch>
+ <kendo-maskedtextbox #I id="invoiceId" [(ngModel)]="invoice.invoiceId" name="invoice.invoiceId" 
+             [includeLiterals]="includeLiterals" [mask]="mask" required>
+          </kendo-maskedtextbox>
+          <div style="color:red;font-size:14px;" *ngIf="!templateForm.valid">
+            Invalid Invoice
+          </div>
+ <ui-switch  id="checked" name="invoice.checked" (click)="onClick()" color="yellow" switchColor="lightgreen" size="small" [(ngModel)]="invoice.checked"  ></ui-switch>
 
 
  </div>
@@ -88,3 +93,4 @@
 <div class="bot-border"></div>
 
 </form>
+<hr>
