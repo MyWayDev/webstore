@@ -32,7 +32,7 @@ export class UploadService {
   }
 
   // Executes the file uploading to firebase https://firebase.google.com/docs/storage/web/upload-files
-  pushUpload(upload: Upload) {
+  pushUpload(upload: Upload,key:string,depositAmount:number,depositDate:Date) {
     let storageRef = firebase.storage().ref();
     this.uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
 
@@ -50,6 +50,15 @@ export class UploadService {
         upload.url = this.uploadTask.snapshot.downloadURL
         upload.name = upload.file.name
         this.saveFileData(upload)
+         this.db.object('/invoices/' + key)
+            .update({
+              
+              depositImg: this.uploadTask.snapshot.downloadURL,
+              pending: false,
+              depositAmount:depositAmount,
+              depositDate:depositDate.toString()
+             
+            });
       }
     );
   }

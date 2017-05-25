@@ -26,7 +26,8 @@ import { AngularFire } from 'angularfire2';
                 z-index: 2;
                 color: gray;
                     }
-  `]
+  `],
+  providers: [ ]
 })
 export class BackendListComponent implements OnInit {
 

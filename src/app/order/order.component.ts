@@ -1,3 +1,4 @@
+import { numberSymbols } from '@progress/kendo-angular-intl/dist/es/main';
 import { Component ,EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
@@ -67,7 +68,9 @@ CurrentDate = new Date();
 onSave(addDate:Date,memberId:string,
           totalQty:number,totalBp:number,
           totalAmount:number,depositNumber:string,
-          depositImg:string,pending:boolean,checked:boolean,on:boolean,adminFee:number,
+          depositImg:string,InvoiceId:string,depositDate:string,
+          depositAmount:number,pending:boolean,checked:boolean,
+          on:boolean,adminFee:number,
           shippingFee:number,invoiceDetails:Invoice[]
           ){ var created_at= new Date().toString()
            
@@ -80,6 +83,9 @@ onSave(addDate:Date,memberId:string,
                                 totalAmount:this.totalAmount,
                                 depositNumber:'',
                                 depositImg:'',
+                                invoiceId:'',
+                                depositDate:'',
+                                depositAmount:0,
                                 pending:true,
                                 checked:false,
                                 on:false,

@@ -56,7 +56,10 @@ import { NumericTextBoxModule } from '@progress/kendo-angular-inputs';
 import { OrderComponent } from './order/order.component';
 import { UploadService } from './services/upload.service';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-import { UiSwitchModule } from 'angular2-ui-switch';
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,6 @@ import { UiSwitchModule } from 'angular2-ui-switch';
     DropdownDirective,
     OrderComponent,
    
-    
   ],
   imports: [
     BrowserModule,
@@ -97,10 +99,14 @@ import { UiSwitchModule } from 'angular2-ui-switch';
     InputsModule,
     ReactiveFormsModule,
     routes,
-    UiSwitchModule,
-    MaskedTextBoxModule, NumericTextBoxModule,
+  UiSwitchModule,
 
-    AngularFireModule.initializeApp(firebaseConfig,authConfig)
+
+    MaskedTextBoxModule, NumericTextBoxModule,DateInputsModule,
+   
+    AngularFireModule.initializeApp(firebaseConfig,authConfig),
+    ModalModule.forRoot(),
+    BootstrapModalModule
   
   ],
   providers: [CatalogeService,SlsService,InvoiceService,AuthService,AuthGuard,StockService,UploadService],

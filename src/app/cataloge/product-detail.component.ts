@@ -1,3 +1,5 @@
+import { ComponentSelectorRule } from 'codelyzer';
+import { InvoiceService } from '../services/invoice.service';
 
 import { InvoiceDetails } from '../models/invoice-details';
 import { SlsService } from '../services/sls.service';
@@ -10,6 +12,7 @@ import { Observable } from 'rxjs/Observable'
 import { Product } from '../models/product';
 import { CatalogeService } from '../services/cataloge.service';
 import { Profile } from '../models/profile';
+import { Invoice } from '../models/invoice';
 
 @Component({
   selector: 'app-product-detail',
@@ -144,13 +147,16 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   uid:string;
   user:Profile;
   duplicate: boolean;
+  myPending:Invoice[];
+  noOrder:boolean;
 
   constructor(private catalogeService: CatalogeService,
     private af: AngularFire,
     private router: Router,
     private route: ActivatedRoute,
     private sls: SlsService,
-    private authService:AuthService
+    private authService:AuthService,
+    private invoiceService:InvoiceService
      
     ) {
      this.uid=this.authService.authInfo$.value.$uid;
@@ -172,11 +178,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         .subscribe(product => this.selectedItem = product)
       this.catalogeService.getProducts()
         .subscribe(cat => this.products = cat);
+        this.showII=false;
     })
     this.totalBp = this.sls.getTotalBp();
     this.totalAmount = this.sls.getTotalAmount();
    
     this.user=this.sls.getUid(this.uid).subscribe(uid=>this.user=uid);
+     this.invoiceService.pendingOrder(this.uid).subscribe(orders=>this.myPending=orders)
    
   }
 
@@ -206,7 +214,18 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }*/
 
   onAddToInvoice() {
- 
+
+    if(this.myPending.length >= 3)
+    { 
+    console.log('pending Before',this.myPending.length)
+      this.noOrder = true;
+       console.log('pending true',this.myPending)
+
+    } else{
+      this.noOrder = false;
+       console.log('pending false',this.myPending)
+    
+
     this.stockCheck(this.selectedItem.productId, this.q)
     if (this.showII == false) {
 
@@ -247,6 +266,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     }
   }
+  }
 
   itemRoute(input) {
     this.router.navigate(['cataloge/' + input])
@@ -268,6 +288,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
   onSelectItem(item: InvoiceDetails) {
     this.selected = item;
+    this.showII=false;
   }
 
 

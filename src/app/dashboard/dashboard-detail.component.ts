@@ -2,9 +2,10 @@ import { InvoiceService } from '../services/invoice.service';
 import { InvoiceDetails } from '../models/invoice-details';
 import { AuthService } from '../services/auth.service';
 import { Invoice } from '../models/invoice';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router'; 
+
 
 @Component({
   selector: 'app-dashboard-detail',
@@ -30,7 +31,7 @@ export class DashboardDetailComponent implements OnInit {
   key:string;
   invoiceItem:Invoice;
   subscription: Subscription;
-  
+   public value: Date = new Date();
 
 
   constructor(private router:Router,

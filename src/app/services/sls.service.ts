@@ -55,6 +55,28 @@ shipFees:number=0;
         return this.data;
       })
   }
+updateRemoved(oldInvoice) {
+
+    for (var i = 0; i < oldInvoice.invoiceDetails.length; i++) {
+      this.prod = this.af.database.object
+        ('products/' + oldInvoice.invoiceDetails[i].ref + '/stock')
+
+      this.prod.subscribe(x => {
+        this.S = x.$value
+        console.log('S', this.S)
+      })
+
+      this.stock(oldInvoice.invoiceDetails[i].ref)
+        .update(
+        {
+          stock: this.S + oldInvoice.invoiceDetails[i].qty
+        }
+
+        )
+    }
+    console.log('updateRemoved', this.prod)
+    
+  }
 
   saveInvoice(newInvoice) {
 
@@ -71,6 +93,7 @@ shipFees:number=0;
         .update(
         {
           stock: this.S - newInvoice.invoiceDetails[i].qty
+        
         }
 
         )

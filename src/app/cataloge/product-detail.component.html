@@ -46,15 +46,19 @@
             {{stock}} الكمية المتاحة
           </div>
         </ul>
+
       </div>
+  
+
 <div class="col-xs-12">
+  <div *ngIf="noOrder" style="color:red; font-weight:bolder" class="alert alert-danger pull-right" role="alert">................تم الوصول للحد الاقصى من الفواتير الغير مسددة</div>
   <div class="panel panel-secondary " style="overflow-y:scroll; max-height:335px;" *ngIf="invoiceDetails.length>0">
     <!-- Default panel contents -->
  
 	
   <div class="container">
-
-  <div class="button" (click)="toShopping()">
+     
+  <div  class="button" (click)="toShopping()">
   <div>
      <p class="pull-left" style="color:snow;font-size:14px;">انهاء الطلبية</p>
   <p class="pull-right" style="color:snow;font-size:14px;">{{totalAmount}} Dh   {{totalBp}} Bp</p>

@@ -54,6 +54,7 @@ updateCheck(key:string,check:boolean){
               depositNumber: depositNumber,
               depositImg: url,
               pending: false
+             
             });
         });
 
@@ -72,6 +73,7 @@ updateCheck(key:string,check:boolean){
       .map(Invoice.fromJsonInvoiceList)
       .do(console.log);
   }
+
   getAllOrder(): Observable<Invoice[]> {
     return this.af.database.list
       ('/invoices', {
@@ -93,6 +95,22 @@ updateCheck(key:string,check:boolean){
       }).map(result => Invoice.fromJsonInvoiceList
         (result).reverse()).do(console.log)
   }
+    pendingOrder(id: string): Observable<Invoice[]> {
+    return this.af.database.list
+      ('/invoices', {
+        query: {
+          orderByChild: 'uid',
+          equalTo: id
+        }
+      }).map(result => Invoice.fromJsonInvoiceList
+        (result).filter(v=>v.pending == true))
+  }
+
+
+
+
+
+
   getKey(id: string) {
     return this.af.database.list('invoices',
       {
@@ -118,6 +136,7 @@ updateCheck(key:string,check:boolean){
   getUserOrders() {
     return this.getOrder(this.user.distrId).do(console.log)
   }
+
 
   /* getUserInvoices(){
  

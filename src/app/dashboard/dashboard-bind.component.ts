@@ -5,7 +5,7 @@ import { Component, OnInit,Input } from '@angular/core';
 @Component({
   selector: 'app-dashboard-bind',
   template: `
-     <div style="height:520px;width:330px;overflow:scroll;
+     <div style="height:520px;width:320px;overflow:scroll;
                         color:white;scrollbar-base-color:gold;
                         font-family:sans-serif;padding:1px;">
               <app-dashboard-item

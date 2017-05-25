@@ -33,8 +33,10 @@ export class DashboardListComponent implements OnInit {
 
   invoices:Invoice[];
 myOrders:Invoice[] ;
+
 uid:string;
 user:Profile;
+noOrders:boolean;
 
   constructor(private invoiceService:InvoiceService,
   private authService:AuthService,
@@ -46,7 +48,10 @@ user:Profile;
   }
 
   ngOnInit() {
-          this.filterOrders(this.uid)
+   
+  
+    this.filterOrders(this.uid)
+  
    /*this.invoiceService.getUserOrders()
                         .subscribe(orders=>
                                      this.invoices = this.myOrders = orders )*/
@@ -63,5 +68,7 @@ user:Profile;
        this.myOrders=orders
      })
  }
+
+ 
 
 }

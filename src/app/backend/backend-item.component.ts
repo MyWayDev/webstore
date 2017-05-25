@@ -15,9 +15,8 @@ import { InvoiceService } from '../services/invoice.service';
                     }`]
 })
 export class BackendItemComponent implements OnInit {
-
+   invoiceId:number;
   depositNumber:string;
-  public checked: boolean 
   @Input() invoice:Invoice;
   @Input() key:string;
 
@@ -34,12 +33,7 @@ export class BackendItemComponent implements OnInit {
    this.invoiceService.updateOn(key,check);
  }
 
-update(key:string=this.key,depositeNumber:string=this.depositNumber){
-this.invoiceService.updateDeposit(key,depositeNumber)
-}
-remove(key:string=this.key){
-  this.invoiceService.removeDeposit(key);
-}
+
 
   ngOnInit() {
   }

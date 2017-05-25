@@ -1,15 +1,13 @@
-
+ 
   <a
   [routerLink]="[key]" 
     class="list-group-item clearfix" 
     routerLinkActive="active"
-><div class="container">
-	<div class="row">
+>
+
 
         
-        
-       <div class=" col-sm-6 col-xs-6 ">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                <img class="img-responsive pull-right" 
                *ngIf="invoice.checked"
          src=" https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2FApprove_icon.png?alt=media&token=070d31fd-bba5-4775-95a2-603f2c3a90c0"  
@@ -18,63 +16,54 @@
          alt=""/>
              
             <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
-              <span><p style="font-size:12px; font-weight:bold;">{{invoice?.$key}}</p></span>  
+              <span><p style="font-size:12px; font-weight:bold;">{{invoice?.$key}}</p>
+              </span>  
                      <span class=" pull-right "> 
-       <img class="img-responsive" 
-         src="{{invoice.depositImg}}"  
-             
-         
-         alt=""/>
-  </span> 
+                      <img class="img-responsive" 
+                       src="{{invoice.depositImg}}"  
+                       
+                    alt=""/>
+                    </span> 
             </div>
-            <div class="clearfix">
-              
-            </div>
+          
             <hr style="margin:6px 0 6px 0;">
     
               
 
-<div style="font-size: 11px;" class=" col-xs-4 ">member ID: {{invoice?.memberId}}</div>
-     <div class="clearfix"></div>
-<div class="bot-border"></div>
+<label style="font-size:13px;">member ID: {{invoice?.memberId}}</label><br>
 
+<label style="font-size:13px;">Total Amount: {{invoice?.totalAmount}} Dh</label><br>
+ 
+<label style="font-size:13px;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
+ 
 
-<div class="col-xs-4" style="font-size: 11px;">Total Amount: {{invoice?.totalAmount}} Dh</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
+<label style="font-size:13px;">Item Count: {{invoice?.totalQty}}</label><br>
+ <label style="font-size:13px;" *ngIf="!invoice.pending" >Deposit Amount :{{invoice.depositAmount}}</label><br>
+ <label style="font-size:13px;" *ngIf="!invoice.pending" >Deposit Date:{{invoice.depositDate | date:'yMMMd'}}</label>
+</a><br>
 
+<form #templateForm="ngForm"
+*ngIf="invoice.pending">
 
-<div class="col-xs-3" style="font-size: 11px;">Total Bp: {{invoice?.totalBp}} Bp</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
+ <div style="margin-right:85px;color:black;font-size:15px" class="pull-right" *ngIf="!templateForm.valid">برجاء ادخال مبلغ و تاريخ الايداع</div><br>
 
-
-<div class="col-xs-3" style="font-size: 11px;">Item Count: {{invoice?.totalQty}}</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-</div>  
-
-   </div>
-</div>     
-
-
-</a>
-<form 
->
-
-<div class="col-xs-8" style="font-size: 11px;">
- <label #ideposit for="">Deposit Number: {{invoice.depositNumber}}</label>
- <div class="col-xs-6 form-group" 
-             style="display: inline-block; width: 220px;">
-  <input
-  *ngIf="invoice.pending"
-  id="depositNumber"
-  #deposit
-  name="depositNumber"
-  [(ngModel)]="depositNumber"
-  style="color:black">
-  
+<div >
+                <kendo-numerictextbox
+                    *ngIf="invoice.pending"
+                id="depositAmount"
+                #amount
+                 name="depositAmount"
+                 [min]="30"
+                    [(ngModel)] = "depositAmount"
+               style="width:140px"
+                ></kendo-numerictextbox>
+ 
+   <kendo-datepicker  *ngIf="invoice.pending" 
+   [format]="'dd-MMM-yyyy'"  name="depositDate" [(ngModel)]="depositDate" required
+   style="width:145px"
+   >
+   </kendo-datepicker>
+  </div>
    <!--button *ngIf="invoice.pending" (click)="update()" 
             class="btn btn-xs btn-success  " name="submit" type="submit">
     Save</button>
@@ -82,40 +71,38 @@
              class="btn btn-xs btn-danger  " name="submit" type="submit">
     Remove</button>
 
-         <div >
+         <div > 
     <input *ngIf="invoice.pending" id="image" name="image" [(ngModel)]="depositImg" type="file">
      
   </div-->
- <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; font-size:9;">
+ <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; display:inline-flex;">
     <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
      <label >{{currentUpload?.progress}}% Complete</label>
 </div>
 
 
-<div class="box">
-    <label>
-       <input [(ngModel)]="depositImg" *ngIf="invoice.pending" id="image" name="image" type="file" class="button" (change)="detectFiles($event)">
-    </label>
 
+    <label>
+       <input [(ngModel)]="depositImg" *ngIf="invoice.pending" id="image" name="image" 
+              type="file" class="button" (change)="detectFiles($event)"
+            
+              >
+    </label><br>
+<div *ngIf="templateForm.valid" style="display:inline-flex">
     <button class="btn btn-xs  btn-info"
+            
             [disabled]="!selectedFiles"
             (click)="uploadSingle()"
             *ngIf="invoice.pending" 
             >
-      Upload
+      save
     </button>
-<button *ngIf="invoice.pending"  (click)="update()" 
-            class="btn btn-xs btn-success  " name="submit" type="submit">
-    Save</button>
-     <button *ngIf="invoice.pending"  (click)="remove()" 
-             class="btn btn-xs btn-danger  " name="submit" type="submit">
-    Remove</button>
+    
 </div>
- </div>
- </div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
+   <button *ngIf="invoice.pending"  (click)="onClick()" 
+     
+             class="btn btn-xs btn-danger  " name="" type="">
+    Remove</button>
 
 </form>
     
