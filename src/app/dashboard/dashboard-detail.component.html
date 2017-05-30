@@ -56,7 +56,9 @@
                             <tbody>
                                 <tr>
                                     <th>Total:</th>
-                                    <td>{{selectedItem?.totalAmount}}</td>
+                                    <td>{{selectedItem?.totalAmount
+                                          +selectedItem?.adminFee
+                                          +selectedItem?.shippingFee}}</td>
                                     <th>Total Bp:</th>
                                     <td>{{selectedItem?.totalBp}}</td>
                                 </tr>

@@ -16,7 +16,7 @@
          alt=""/>
              
             <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
-              <span><p style="font-size:13px; font-weight:bold; color:darkred;">{{invoice?.$key}}</p>
+              <span  *ngIf="invoice.checked" class="pull-right"><p style="font-size:14px; font-weight:bold; color:darkred;">{{invoice?.invoiceId}} : رقم البوليصة</p>
               </span>  
                      <span class=" pull-right "> 
                       <img class="img-responsive" 
@@ -32,7 +32,9 @@
 
 <label style="font-size:12px;font-weight:bold;">member ID: {{invoice?.memberId}}</label><br>
 
-<label style="font-size:12px;font-weight:bold;">Total Amount: {{invoice?.totalAmount}} Dh</label><br>
+<label style="font-size:12px;font-weight:bold;">Total Amount: {{invoice?.totalAmount
+                                                                +invoice?.adminFee
+                                                                +invoice?.shippingFee}} Dh</label><br>
  
 <label style="font-size:12px;font-weight:bold;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
  

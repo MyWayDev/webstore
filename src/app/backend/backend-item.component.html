@@ -9,6 +9,7 @@
   [routerLink]="[key]" 
     class="list-group-item clearfix" 
     routerLinkActive="active"
+    
 >
 
         
@@ -21,7 +22,7 @@
               <span><p style="font-size:12px; font-weight:bold;">{{invoice?.$key}}</p></span>  
                      <span class=" pull-right "> 
                       
-       <img *ngIf="invoice.on"  class="img-responsive" 
+       <img #img name="img" *ngIf="invoice.on"  class="img-responsive" 
          src="{{invoice.depositImg}}"  
              
          
@@ -35,7 +36,10 @@
 <div class="bot-border"></div>
 
 
-<div class="col-xs-8" style="font-size: 11px;">Total Amount: {{invoice?.totalAmount}} Dh</div>
+<div class="col-xs-8" style="font-size: 11px;">Total Amount: {{ invoice?.totalAmount
+                                                                +invoice?.adminFee
+                                                                +invoice?.shippingFee                                                              
+                                                              }} Dh</div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 

@@ -123,6 +123,8 @@ button.button {
                     }
           `]
 })
+
+
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
   public autoCorrect: boolean = true;
