@@ -49,7 +49,7 @@ export class ProductListComponent implements OnInit {
                         .includes(search)
                        
                         )
-                       console.log('searchInput',search)
+                      
                       }
 
 }

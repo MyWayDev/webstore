@@ -1,0 +1,33 @@
+<div class="row"> 
+  <div id="col" class="col-xs-6 pull-left" style="margin-left:100px;">
+    <!--a [routerLink]="['sales']" 
+       class="btn btn-default btn-xs ">
+      sales
+    </a-->
+    <ul class="nav nav-pills ">
+  <li style=" font-weight:bold;" role="presentation"   ><a style="color:darkred;" [routerLink]="['sales']">Sales</a></li>
+  <li style=" font-weight:bold;" role="presentation"><a style="color:darkred;" [routerLink]="['sales']">History</a></li>
+  <li  style=" font-weight:bold;" role="presentation"><a style="color:darkred;"[routerLink]="['sales']" >Pending</a></li>
+</ul>
+ <hr style="margin-top:0px;">
+  </div>
+ 
+</div>
+<div class=" col-xs-2" >
+  <ul class="nav nav-pills nav-stacked">
+  <li role="presentation"><a (click)="getChecked()"><i style="color:darkred;" class="fa fa-check fa-2x" aria-hidden="true"></i></a></li>
+  <li role="presentation"><a (click)="getPending()" ><i style="color:darkred;" class="fa fa-ban fa-2x" aria-hidden="true"></i></a></li>
+ 
+</ul>
+</div>
+<div class="row"> 
+  <div class="col-md-6 col-sm-6 col-xs-6 pull-left" > 
+    <ul class="list-group">
+          <input id="search-input" class="form-control" placeholder="Search"
+          (keyup)="search(input.value)"#input>
+          <i class="fa fa-search errspan" aria-hidden="true"></i>
+      <app-ordersort-bind [invoiceList]='filtered'></app-ordersort-bind>   
+      
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+
+
+  <form *ngIf="invoice.pending" >
+  <ui-switch  id="on" name="invoice.on" (click)="onOn(invoice.$key,invoice.on)" color="yellow" switchColor="red" size="small" [(ngModel)]="invoice.on"  ></ui-switch>
+  </form>
+  <a 
+  [routerLink]="[key]" 
+    class="list-group-item clearfix" 
+    routerLinkActive="active" 
+    *ngIf="invoice.pending">
+
+            <div class="col-xs-12">
+            <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
+              <span><p style="font-size:12px; font-weight:bold;">member ID: {{invoice?.memberId}}
+               </p></span>  
+            </div>
+            <div *ngIf="invoice.on" class="clearfix">
+                 
+<div style="font-size: 11px;" class=" col-xs-8 "></div>
+     <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-xs-8" style="font-size: 11px;">Total Amount: {{ invoice?.totalAmount
+                                                                +invoice?.adminFee
+                                                                +invoice?.shippingFee                                                              
+                                                              }} Dh</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-xs-8" style="font-size: 11px;">Total Bp: {{invoice?.totalBp}} Bp</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-xs-8" style="font-size: 11px;">Item Count: {{invoice?.totalQty}}</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+           
+       <span  class="pull-right">   
+            <button *ngIf="invoice.pending"  (click)="onClick()" 
+                
+                        class="btn btn-xs btn-danger  " name="" type="">
+                Remove</button>
+        </span> 
+ </div>
+</a>
+<!--------------------------------checked Template------------------------------------------>
+
+  <form *ngIf="invoice.checked" >
+ <ui-switch  id="on" name="invoice.on" (click)="onOn(invoice.$key,invoice.on)" color="yellowgreen" switchColor="green" size="small" [(ngModel)]="invoice.on"  ></ui-switch>
+
+  </form>
+<a 
+  [routerLink]="[key]" 
+    class="list-group-item clearfix" 
+    routerLinkActive="active" 
+    *ngIf="invoice.checked"
+>
+            <div class="col-xs-12">
+
+               <h6  style="color:darkred;font-weight:bolder">{{invoice?.invoiceId}}:  رقم البوليصة</h6>
+                 <h6  style="color:black;font-weight:bolder">{{invoice.depositDate | date:'yMMMd'}}: تاريخ الايداع </h6>
+            <h6 style="color:#00b1b1;font-weight:bolder">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}: تاريخ الطلبية</h6>
+          
+              <span><p style="font-size:12px; font-weight:bold;">member ID: {{invoice?.memberId}}</p></span>  
+                     <span class=" pull-right "> 
+                   <p style="font-size:12px; font-weight:bold; color:goldenrod;">Deposit Amount :{{invoice.depositAmount}}</p>
+                    <hr class="style2">
+            <div *ngIf="invoice.on" class="clearfix ">
+              
+             
+              
+                  <div class="col-xs-10" style="font-size: 12px;color:black;font-weight:bold;">Total Amount: {{ invoice?.totalAmount
+                                                                                  +invoice?.adminFee
+                                                                                  +invoice?.shippingFee                                                              
+                                                                                }} Dh</div>
+                    <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+
+                  <div class="col-xs-10" style="font-size: 12px;color:black;font-weight:bold;">Total Bp: {{invoice?.totalBp}} Bp</div>
+                    <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+
+                  <div class="col-xs-10" style="font-size: 12px;color:black;font-weight:bold;">Item Count: {{invoice?.totalQty}}</div>
+                    <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+                              </div>
+       <img #img name="img" *ngIf="invoice.on"  class="img-responsive" 
+         src="{{invoice.depositImg}}"  
+          
+         alt=""/>
+             </span> 
+            </div>
+
+           
+    
+        
+</a>
+
+<hr>

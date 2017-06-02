@@ -60,6 +60,11 @@ import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
+import { OrdersortComponent } from './ordersort/ordersort.component';
+import { OrdersortListComponent } from './ordersort/ordersort-list.component';
+import { OrdersortItemComponent } from './ordersort/ordersort-item.component';
+import { OrdersortDetailComponent } from './ordersort/ordersort-detail.component';
+import { OrdersortBindComponent } from './ordersort/ordersort-bind.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +92,11 @@ import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
     BackendBindComponent,
     DropdownDirective,
     OrderComponent,
+    OrdersortComponent,
+    OrdersortListComponent,
+    OrdersortItemComponent,
+    OrdersortDetailComponent,
+    OrdersortBindComponent,
    
   ],
   imports: [

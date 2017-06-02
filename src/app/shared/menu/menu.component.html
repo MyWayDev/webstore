@@ -4,7 +4,7 @@
     <div class="navbar-header">
 
       <a class="navbar-brand">
-         <img src="https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2Flogo-01.png?alt=media&token=c31f6502-4c41-4e63-b0b2-01d2e17b1a85" 
+         <img src="https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2Flogo-02.png?alt=media&token=c31f6502-4c41-4e63-b0b2-01d2e17b1a85" 
               alt=""
               style="margin-top: -12px; margin-left:-10px;">
       </a>
@@ -40,30 +40,40 @@
           Logout
           </a>
         </li>
-
+<div class="pull-right">
         <ul class="nav navbar-nav navbar-right" *ngIf="authInfo?.$uid=='oWKEe7N1dJXCbW2QoMhhWxRtWJG2' || authInfo?.$uid=='fw2gsTBZU7Sq6dNM1ZH6QG8EBrr1' ||  authInfo?.$uid=='9bpHVIcJ1Nda9p6TPVqFgO6Yyq03'">
           <li class="dropdown" mwDropdown>
             <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-             Admin
-             <span class="caret">
+               
+             
+               <i class="fa fa-cog fa-spin fa-2x fa-fw"></i>
+                اداوات
+             <span style=" font-weight:bolder; font-size:14px;" class="caret">
+           
              </span>
+          
           </a>
             <ul class="dropdown-menu">
               <li routerLinkActive="active">
                 <a [routerLink]="['/stock']">
-          Stock Control
+          Stock
           </a>
               </li>
               <li routerLinkActive="active">
                 <a [routerLink]="['/backend']">
-          Backend
+          Orders
+          </a>
+              </li>
+                <li routerLinkActive="active">
+                <a [routerLink]="['/ordersort']">
+          Control Panel
           </a>
               </li>
 
             </ul>
           </li>
         </ul>
-
+</div>
       </ul>
 
 

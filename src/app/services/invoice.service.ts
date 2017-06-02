@@ -26,6 +26,7 @@ export class InvoiceService {
     this.folder = 'deposits';
 
   }
+
 updateCheck(key:string,check:boolean,invoiceId:string){
    this.af.database.object('/invoices/' + key)
             .update({
@@ -83,7 +84,29 @@ updateCheck(key:string,check:boolean,invoiceId:string){
 
         }
       }).map(result => Invoice.fromJsonInvoiceList
-        (result).filter(p => p.pending == false && p.checked == false)).do(console.log)
+        (result).filter(p => p.pending == false && p.checked == false))
+  }
+
+  getCheckedOrders(): Observable<Invoice[]> {
+    return this.af.database.list
+      ('/invoices', {
+        query: {
+          orderByKey: true,
+
+        }
+      }).map(result => Invoice.fromJsonInvoiceList
+        (result).filter(p =>  p.checked == true))
+  }
+
+    getPendingOrders(): Observable<Invoice[]> {
+    return this.af.database.list
+      ('/invoices', {
+        query: {
+          orderByKey: true,
+
+        }
+      }).map(result => Invoice.fromJsonInvoiceList
+        (result).filter(p => p.pending == true))
   }
 
   getOrder(id: string): Observable<Invoice[]> {
@@ -94,8 +117,10 @@ updateCheck(key:string,check:boolean,invoiceId:string){
           equalTo: id
         }
       }).map(result => Invoice.fromJsonInvoiceList
-        (result).reverse()).do(console.log)
+        (result).reverse())
   }
+
+
     pendingOrder(id: string): Observable<Invoice[]> {
     return this.af.database.list
       ('/invoices', {

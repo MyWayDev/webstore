@@ -20,8 +20,8 @@ export class BackendItemComponent implements OnInit {
   depositNumber:string;
   @Input() invoice:Invoice;
   @Input() key:string;
- public includeLiterals: boolean = false;
- public mask: string = "0000000000";
+ public includeLiterals: boolean = true;
+ public mask: string = "00000000000";
   constructor( private invoiceService:InvoiceService,overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal
                ) {  overlay.defaultViewContainer = vcRef; }
                

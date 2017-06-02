@@ -83,7 +83,7 @@
   [(ngModel)]="invoiceId"
   style="color:black"-->  
  <kendo-maskedtextbox #I id="invoiceId" [(ngModel)]="invoice.invoiceId" name="invoice.invoiceId" 
-             [includeLiterals]="includeLiterals" [mask]="mask" required>
+             [includeLiterals]="includeLiterals"  required>
           </kendo-maskedtextbox>
           <div style="color:red;font-size:14px;" *ngIf="!templateForm.valid">
             Invalid Invoice
