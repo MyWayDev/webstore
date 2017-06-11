@@ -1,73 +1,54 @@
- 
-  <a
-  [routerLink]="[key]" 
-    class="list-group-item clearfix" 
-    routerLinkActive="active"
->
+<a [routerLink]="[key]" class="list-group-item clearfix" routerLinkActive="active">
 
 
-        
-            <div class="col-xs-12">
-               <img class="img-responsive pull-right" 
-               *ngIf="invoice.checked"
-         src=" https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2FApprove_icon.png?alt=media&token=070d31fd-bba5-4775-95a2-603f2c3a90c0"  
-            style="max-height: 38px;" 
-         
-         alt=""/>
-             
-            <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
-              <span  *ngIf="invoice.checked" class="pull-right"><p style="font-size:14px; font-weight:bold; color:darkred;">{{invoice?.invoiceId}} : رقم البوليصة</p>
-              </span>  
-                     <span class=" pull-right "> 
+
+    <div class="col-xs-12">
+        <img class="img-responsive pull-right" *ngIf="invoice.checked" src=" https://firebasestorage.googleapis.com/v0/b/webstore-ac5c7.appspot.com/o/shared%2FApprove_icon.png?alt=media&token=070d31fd-bba5-4775-95a2-603f2c3a90c0"
+            style="max-height: 38px;" alt="" />
+
+        <h6 style="color:#00b1b1;">{{invoice?.addDate | date}} |{{invoice.addDate| date:'shortTime'}}</h6>
+        <span *ngIf="invoice.checked" class="pull-right"><p style="font-size:14px; font-weight:bold; color:darkred;">{{invoice?.invoiceId}} : رقم البوليصة</p>
+              </span>
+        <span class=" pull-right "> 
                       <img class="img-responsive" 
                        src="{{invoice.depositImg}}"  
                        
                     alt=""/>
-                    </span> 
-            </div>
-          
-            <hr style=" color:darkgoldenrod; margin:6px 0 9px 0;">
-    
-              
+                    </span>
+    </div>
 
-<label style="font-size:12px;font-weight:bold;">member ID: {{invoice?.memberId}}</label><br>
+    <hr style=" color:darkgoldenrod; margin:6px 0 9px 0;">
 
-<label style="font-size:12px;font-weight:bold;">Total Amount: {{invoice?.totalAmount
+
+
+    <label style="font-size:12px;font-weight:bold;">member ID: {{invoice?.memberId}}</label><br>
+
+    <label style="font-size:12px;font-weight:bold;">Total Amount: {{invoice?.totalAmount
                                                                 +invoice?.adminFee
                                                                 +invoice?.shippingFee}} Dh</label><br>
- 
-<label style="font-size:12px;font-weight:bold;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
- 
 
-<label style="font-size:12px;">Item Count: {{invoice?.totalQty}}</label><br>
-<hr style="margin:6px 0 6px 0;">
- <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending" >Deposit Amount :{{invoice.depositAmount}}</label><br>
- <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending" >Deposit Date:{{invoice.depositDate | date:'yMMMd'}}</label>
+    <label style="font-size:12px;font-weight:bold;">Total Bp: {{invoice?.totalBp}} Bp</label><br>
+
+
+    <label style="font-size:12px;">Item Count: {{invoice?.totalQty}}</label><br>
+    <hr style="margin:6px 0 6px 0;">
+    <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending">Deposit Amount :{{invoice.depositAmount}}</label><br>
+    <label style="font-size:13px;color:goldenrod;" *ngIf="!invoice.pending">Deposit Date:{{invoice.depositDate | date:'yMMMd'}}</label>
 </a><br>
 
-<form #templateForm="ngForm"
-*ngIf="invoice.pending">
+<form #templateForm="ngForm" *ngIf="invoice.pending">
 
- <div style="margin-right:85px;color:black;font-size:16px" class="pull-right" *ngIf="!templateForm.valid">برجاء ادخال مبلغ و تاريخ الايداع</div><br>
+    <div style="margin-right:85px;color:black;font-size:16px" class="pull-right" *ngIf="!templateForm.valid">برجاء ادخال مبلغ و تاريخ الايداع</div><br>
 
-<div >
-                <kendo-numerictextbox
-                    *ngIf="invoice.pending"
-                id="depositAmount"
-                #amount
-                 name="depositAmount"
-                 [min]="30"
-                    [(ngModel)] = "depositAmount"
-               style="width:140px"
-                ></kendo-numerictextbox>
- 
-   <kendo-datepicker  *ngIf="invoice.pending" 
-   [format]="'dd-MMM-yyyy'"  name="depositDate" [(ngModel)]="depositDate" required
-   style="width:145px"
-   >
-   </kendo-datepicker>
-  </div>
-   <!--button *ngIf="invoice.pending" (click)="update()" 
+    <div>
+        <kendo-numerictextbox *ngIf="invoice.pending" id="depositAmount" #amount name="depositAmount" [min]="30" [(ngModel)]="depositAmount"
+            style="width:140px"></kendo-numerictextbox>
+
+        <kendo-datepicker *ngIf="invoice.pending" [format]="'dd-MMM-yyyy'" name="depositDate" [(ngModel)]="depositDate" required
+            style="width:145px">
+        </kendo-datepicker>
+    </div>
+    <!--button *ngIf="invoice.pending" (click)="update()" 
             class="btn btn-xs btn-success  " name="submit" type="submit">
     Save</button>
      <button *ngIf="invoice.pending" (click)="remove()" 
@@ -78,10 +59,10 @@
     <input *ngIf="invoice.pending" id="image" name="image" [(ngModel)]="depositImg" type="file">
      
   </div-->
- <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; display:inline-flex;">
-    <progress  class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
-     <label >{{currentUpload?.progress}}% Complete</label>
-</div>
+    <div *ngIf="currentUpload" style="color:yellow; font-weight:bold; display:inline-flex;">
+        <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+        <label>{{currentUpload?.progress}}% Complete</label>
+    </div>
 
 
 
@@ -91,23 +72,13 @@
             
               >
     </label><br>
-<div *ngIf="templateForm.valid" style="display:inline-flex">
-    <button class="btn btn-xs  btn-info"
-            
-            [disabled]="!selectedFiles"
-            (click)="uploadSingle()"
-            *ngIf="invoice.pending" 
-            >
+    <div *ngIf="templateForm.valid" style="display:inline-flex">
+        <button class="btn btn-xs  btn-info" [disabled]="!selectedFiles" (click)="uploadSingle()" *ngIf="invoice.pending">
       save
     </button>
-    
-</div>
-   <button *ngIf="invoice.pending"  (click)="onClick()" 
-     
-             class="btn btn-xs btn-danger  " name="" type="">
+
+    </div>
+    <button *ngIf="invoice.pending" (click)="onClick()" class="btn btn-xs btn-danger  " name="" type="">
     Remove</button>
 
 </form>
-    
-
-  

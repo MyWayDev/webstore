@@ -1,99 +1,96 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-        	<div class="invoice-title">
-    		
-    		</div>
-    		
-    		<div class="row">
-    			<div class="col-xs-6">
-    		
-    			</div>
-    			<div class="col-xs-6 text-right">
-    			
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="col-xs-6">
-    					<address style="color:aliceblue;">
-    				<strong>	{{user.name}}</strong><br>
-    				<strong>{{user.distrId}}</strong><br>
-    				<strong>{{user.area}}</strong><br>	
-    				</address>
-    			</div>
-    			<div class="col-xs-6 text-right">
-    				<address style="color:aliceblue;">
-    					<strong >Order Date:</strong><br>
-    					{{CurrentDate | date:'medium'}}<br><br>
-    				</address>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="panel panel-default">
-    			<div class="panel-heading">
-    				  <button class="btn btn-sm btn-info pull-left" style="display:inline-block"
-            (click)="backRoute()">  <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></button>
-            <button class="btn btn-sm btn-success pull-right" style="display:inline-block"
-            (click)="onSave()"> <i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
-    			</div>
-    			<div class="panel-body">
-    				<div class="table-responsive">
-    					<table class="table table-condensed">
-    						<thead>
-                                <tr>
-        							<td><strong>الكود</strong></td>
-                       <td class="text-center"><strong>النقاط</strong></td>
-        							<td class="text-center"><strong>السعر</strong></td>
-        							<td class="text-center"><strong>الكمية</strong></td>
-                      	<td class="text-center"><strong> اجمالى النقاط</strong></td>
-                        		<td class="text-center"><strong> اجمالى السعر</strong></td>
-                                </tr>
-    						</thead>
-    						<tbody>
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr *ngFor="let item of items" >
-    								<td>{{item.itemId}}</td>
-                    	<td class="text-center">{{item.bp}}Bp</td>
-    								<td class="text-center">{{item.price}}Dh</td>
-    								<td class="text-center">{{item.qty}}</td>
-                    <td class="text-center">{{item.bp*item.qty}}</td>
-    								<td class="text-center">{{item.price*item.qty}}</td>
-    							</tr>
-                                <tr>
-        			
-    							<tr>
-    								<td class="thick-line"></td>
-    								<td class="thick-line"></td>
-    								<td class="thick-line text-center"><strong>اجمالى</strong></td>
-    								<td class="thick-line text-right"> {{totalBp}}Bp | {{totalAmount}}Dh</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>مصاريف شحن</strong></td>
-    								<td class="no-line text-right">{{shipFees}}Dh</td>
-    							</tr>
-                  		<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>مصاريف اداريه</strong></td>
-    								<td class="no-line text-right">{{adminFees}}Dh</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>اجمالى الفاتورة</strong></td>
-    								<td class="no-line text-right">{{totalAmount+shipFees+adminFees}}Dh</td>
-    							</tr>
-    						</tbody>
-    					</table>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="invoice-title">
+
+			</div>
+
+			<div class="row">
+				<div class="col-xs-6">
+
+				</div>
+				<div class="col-xs-6 text-right">
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<address style="color:aliceblue;">
+						<strong>	{{user.name}}</strong><br>
+						<strong>{{user.distrId}}</strong><br>
+						<strong>{{user.area}}</strong><br>
+					</address>
+				</div>
+				<div class="col-xs-6 text-right">
+					<address style="color:aliceblue;">
+						<strong>Order Date:</strong><br> {{CurrentDate | date:'medium'}}<br><br>
+					</address>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<button class="btn btn-sm btn-info pull-left" style="display:inline-block" (click)="backRoute()">  <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></button>
+					<button class="btn btn-sm btn-success pull-right" style="display:inline-block" (click)="onSave()"> <i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<td><strong>الكود</strong></td>
+									<td class="text-center"><strong>النقاط</strong></td>
+									<td class="text-center"><strong>السعر</strong></td>
+									<td class="text-center"><strong>الكمية</strong></td>
+									<td class="text-center"><strong> اجمالى النقاط</strong></td>
+									<td class="text-center"><strong> اجمالى السعر</strong></td>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- foreach ($order->lineItems as $line) or some such thing here -->
+								<tr *ngFor="let item of items">
+									<td>{{item.itemId}}</td>
+									<td class="text-center">{{item.bp}}Bp</td>
+									<td class="text-center">{{item.price}}Dh</td>
+									<td class="text-center">{{item.qty}}</td>
+									<td class="text-center">{{item.bp*item.qty}}</td>
+									<td class="text-center">{{item.price*item.qty}}</td>
+								</tr>
+								<tr>
+
+									<tr>
+										<td class="thick-line"></td>
+										<td class="thick-line"></td>
+										<td class="thick-line text-center"><strong>اجمالى</strong></td>
+										<td class="thick-line text-right"> {{totalBp}}Bp | {{totalAmount}}Dh</td>
+									</tr>
+									<tr>
+										<td class="no-line"></td>
+										<td class="no-line"></td>
+										<td class="no-line text-center"><strong>مصاريف شحن</strong></td>
+										<td class="no-line text-right">{{shipFees}}Dh</td>
+									</tr>
+									<tr>
+										<td class="no-line"></td>
+										<td class="no-line"></td>
+										<td class="no-line text-center"><strong>مصاريف اداريه</strong></td>
+										<td class="no-line text-right">{{adminFees}}Dh</td>
+									</tr>
+									<tr>
+										<td class="no-line"></td>
+										<td class="no-line"></td>
+										<td class="no-line text-center"><strong>اجمالى الفاتورة</strong></td>
+										<td class="no-line text-right">{{totalAmount+shipFees+adminFees}}Dh</td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

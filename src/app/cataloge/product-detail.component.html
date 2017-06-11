@@ -32,76 +32,71 @@
                                </li-->
 
           <img src="" alt="">
-       <br>
-          <kendo-numerictextbox  #qty id="item-qty" [autoCorrect]="autoCorrect" 
-                                [min]="min" [max]="max" [(ngModel)]='q'
-                                name="qty" [format]="'n0'" [disabled]="show"
-                                
-                                >
+          <br>
+          <kendo-numerictextbox #qty id="item-qty" [autoCorrect]="autoCorrect" [min]="min" [max]="max" [(ngModel)]='q' name="qty" [format]="'n0'"
+            [disabled]="show">
           </kendo-numerictextbox>
 
           <button class="btn btn-info btn-sm" (click)="onAddToInvoice()">ADD</button>
-          
+
           <div *ngIf="showII" style="color:snow; font-size:16px;display:inline-block;">
             {{stock}} الكمية المتاحة
           </div>
         </ul>
 
       </div>
-  
 
-<div class="col-xs-12">
-  <div *ngIf="noOrder" style="color:red; font-weight:bolder" class="alert alert-danger pull-right" role="alert">................تم الوصول للحد الاقصى من الفواتير الغير مسددة</div>
-  <div class="panel panel-secondary " style="overflow-y:scroll; max-height:335px;" *ngIf="invoiceDetails.length>0">
-    <!-- Default panel contents -->
- 
-	
-  <div class="container">
-     
-  <div  class="button" (click)="toShopping()">
-  <div>
-     <p class="pull-left" style="color:snow;font-size:14px;">انهاء الطلبية</p>
-  <p class="pull-right" style="color:snow;font-size:14px;">{{totalAmount}} Dh   {{totalBp}} Bp</p>
-  </div>
-  </div>
-</div>
-    <!-- Table -->
-    <div class="table-responsive">
-      <table class="table table-xs table-responsive  table-hover">
-        <thead class="thead-inverse">
-          <tr>
-            <td></td>  
-            <td class="text-center"><strong>كود</strong></td>
-            <td class="text-center"><strong>الكمية</strong></td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of invoiceDetails" (click)="itemRoute(item.itemId)" (click)="onSelectItem(item)">
-            <td class="text-center">
-              <span>
+
+      <div class="col-xs-12">
+        <div *ngIf="noOrder" style="color:red; font-weight:bolder" class="alert alert-danger pull-right" role="alert">................تم الوصول للحد الاقصى من الفواتير الغير مسددة</div>
+        <div class="panel panel-secondary " style="overflow-y:scroll; max-height:335px;" *ngIf="invoiceDetails.length>0">
+          <!-- Default panel contents -->
+
+
+          <div class="container">
+
+            <div class="button" (click)="toShopping()">
+              <div>
+                <p class="pull-left" style="color:snow;font-size:14px;">انهاء الطلبية</p>
+                <p class="pull-right" style="color:snow;font-size:14px;">{{totalAmount}} Dh {{totalBp}} Bp</p>
+              </div>
+            </div>
+          </div>
+          <!-- Table -->
+          <div class="table-responsive">
+            <table class="table table-xs table-responsive  table-hover">
+              <thead class="thead-inverse">
+                <tr>
+                  <td></td>
+                  <td class="text-center"><strong>كود</strong></td>
+                  <td class="text-center"><strong>الكمية</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of invoiceDetails" (click)="itemRoute(item.itemId)" (click)="onSelectItem(item)">
+                  <td class="text-center">
+                    <span>
                      <img 
                       src=
                       "https://firebasestorage.googleapis.com/v0/b/webstore-myway/o/cat%2F{{item.itemId}}.png?alt=media&token=afbdc43b-86f2-48a6-af60-6ecb751fcaef"  
                       style="max-height: 55px;"       
                       class="img-fluid" alt=""/>
                     </span>
-            </td>
-            <td #i class="text-center" style="padding-top:25px;"><strong>{{item.itemId}}</strong></td>
-            <td class="text-center" style="padding-top:25px;">
-              <span style="font-size:14px;line-height: 1.5;" class="badge badge-pill">{{item.qty}}</span></td>
-            <td class="text-center" style="padding-top:25px;">
-              <button type="button" class="btn-danger btn-xs" *ngIf="selectedItem.productId==item.itemId" (click)="onDelete(selected)">
+                  </td>
+                  <td #i class="text-center" style="padding-top:25px;"><strong>{{item.itemId}}</strong></td>
+                  <td class="text-center" style="padding-top:25px;">
+                    <span style="font-size:14px;line-height: 1.5;" class="badge badge-pill">{{item.qty}}</span></td>
+                  <td class="text-center" style="padding-top:25px;">
+                    <button type="button" class="btn-danger btn-xs" *ngIf="selectedItem.productId==item.itemId" (click)="onDelete(selected)">
                         <i class="fa fa-window-close" aria-hidden="true"></i>
                       </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-    </div>
-  </div>
-</div>
-
-

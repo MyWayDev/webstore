@@ -14,11 +14,11 @@ import { Component, OnInit, Input } from '@angular/core';
               </app-product-item>
             </div>
             `,
-    styles: []
-            })
+  styles: []
+})
 export class ProductBindComponent implements OnInit {
 
-@Input() productList:Product[];
+  @Input() productList: Product[];
 
   constructor() { }
 
@@ -26,4 +26,3 @@ export class ProductBindComponent implements OnInit {
   }
 
 }
-       

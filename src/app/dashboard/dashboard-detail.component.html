@@ -1,5 +1,5 @@
 <body>
-    
+
     <section class="content content_content" style="width: 100%; margin: auto;">
         <section class="invoice">
             <!-- title row -->
@@ -9,7 +9,8 @@
                         <i class=""></i>
                         <small class="pull-right">Date: {{selectedItem?.addDate | date}}</small>
                     </h2>
-                </div><!-- /.col -->
+                </div>
+                <!-- /.col -->
             </div>
             <!-- info row -->
             <div class="row invoice-info">
@@ -21,15 +22,17 @@
                         </strong>
                         <br>
                     </address>
-                </div><!-- /.col -->
-              
-            </div><!-- /.row -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+            <!-- /.row -->
             <!-- Table row -->
             <div class="row">
                 <div class="col-xs-10 table-responsive">
                     <table class="table table-striped">
                         <thead>
-                            <tr >
+                            <tr>
                                 <th>Qty</th>
                                 <th>Product</th>
                                 <th>Price</th>
@@ -45,8 +48,10 @@
                             </tr>
                         </tbody>
                     </table>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
             <div class="row">
                 <!-- accepted payments column -->
                 <div class="col-xs-8">
@@ -56,19 +61,20 @@
                             <tbody>
                                 <tr>
                                     <th>Total:</th>
-                                    <td>{{selectedItem?.totalAmount
-                                          +selectedItem?.adminFee
-                                          +selectedItem?.shippingFee}}</td>
+                                    <td>{{selectedItem?.totalAmount +selectedItem?.adminFee +selectedItem?.shippingFee}}
+                                    </td>
                                     <th>Total Bp:</th>
                                     <td>{{selectedItem?.totalBp}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
             <!-- this row will not appear when printing -->
-         
+
         </section>
     </section>
 

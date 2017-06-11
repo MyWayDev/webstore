@@ -27,29 +27,29 @@ import { Observable } from 'rxjs/Rx';
 
 export class ProductListComponent implements OnInit {
 
-        products$:Observable<Product[]>;
-        products:Product[];
-        product:Product = new Product();
-        filtered:Product[];
+  products$: Observable<Product[]>;
+  products: Product[];
+  product: Product = new Product();
+  filtered: Product[];
 
-  constructor(private catalogeService:CatalogeService) { }
+  constructor(private catalogeService: CatalogeService) { }
 
   ngOnInit() {
-     this.catalogeService.getProducts()
-                                  .subscribe(items=> 
-                                              this.products = this.filtered = items);
-                                          
-             }
+    this.catalogeService.getProducts()
+      .subscribe(items =>
+        this.products = this.filtered = items);
 
-  search(search:string){
-   
-  
-                        this.filtered=this.products
-                        .filter(item=>parseInt(item.productId).toString()
-                        .includes(search)
-                       
-                        )
-                      
-                      }
+  }
+
+  search(search: string) {
+
+
+    this.filtered = this.products
+      .filter(item => parseInt(item.productId).toString()
+        .includes(search)
+
+      )
+
+  }
 
 }

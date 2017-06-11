@@ -89,7 +89,7 @@ this.invoiceService.updateDeposit(key,depositNumber)
 }
 
 remove(order:Invoice=this.invoice,key:string=this.key){
-  this.sls.updateRemoved(order);
+  //this.sls.updateRemoved(order);
   this.invoiceService.removeDeposit(key);
 
 }
