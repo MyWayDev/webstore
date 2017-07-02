@@ -25,7 +25,7 @@ export class SlsService {
   sourceId: Observable<Product[]>
   data;
   user:Profile;
-shipFees:number=0;
+  shipFees:number=0;
 
 
 
