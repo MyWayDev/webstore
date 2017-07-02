@@ -1,6 +1,5 @@
 import { ComponentSelectorRule } from 'codelyzer';
 import { InvoiceService } from '../services/invoice.service';
-
 import { InvoiceDetails } from '../models/invoice-details';
 import { SlsService } from '../services/sls.service';
 import { AuthService } from '../services/auth.service';

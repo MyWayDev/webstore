@@ -79,7 +79,7 @@ export class OrdersortItemComponent implements OnInit {
  }
 
 remove(order:Invoice=this.invoice,key:string=this.key){
-
+  this.sls.updateRemoved(order);
   this.invoiceService.removeDeposit(key);
 
 }

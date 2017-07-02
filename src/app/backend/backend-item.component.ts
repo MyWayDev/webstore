@@ -16,12 +16,14 @@ import { Modal } from 'angular2-modal/plugins/bootstrap'
                     }`]
 })
 export class BackendItemComponent implements OnInit {
-   invoiceId:number;
-  depositNumber:string;
-  @Input() invoice:Invoice;
-  @Input() key:string;
+ 
+@Input() invoice:Invoice;
+@Input() key:string;
+invoiceId:number;
+depositNumber:string;
  public includeLiterals: boolean = true;
  public mask: string = "00000000000";
+
   constructor( private invoiceService:InvoiceService,overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal
                ) {  overlay.defaultViewContainer = vcRef; }
                

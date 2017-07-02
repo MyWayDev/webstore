@@ -33,11 +33,6 @@ export class Product {
       static fromJsonProductList(productArray:any[]):Product[]{
           return productArray.map(Product.fromJsonProduct);
                                 }
-                             
-      
-                             
-
-       
-                                            
+                                                    
                      }
   

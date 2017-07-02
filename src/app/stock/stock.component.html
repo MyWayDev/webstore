@@ -6,7 +6,7 @@
         <br>
         <br>
          <br>
-        
+
    <kendo-grid [data]="filtered" [selectable]="true"
           
           (edit)="editHandler($event)"
@@ -17,6 +17,8 @@
           
           [height]="510"
           >
+         
+                <button type="button" kendoGridExcelCommand><span class="k-icon k-i-file-excel"></span>Export to Excel</button>
          
              <kendo-grid-column field="productId" title="Id" width="25" [editable]="false"
             [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
