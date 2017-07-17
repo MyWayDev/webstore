@@ -2,8 +2,8 @@ import { Invoice } from '../models/invoice';
 import { Component, OnInit,Input,ViewContainerRef } from '@angular/core';
 import { InvoiceService } from '../services/invoice.service';
 import { Overlay } from 'angular2-modal';
-import { Modal } from 'angular2-modal/plugins/bootstrap'
-
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-backend-item',
   templateUrl: './backend-item.component.html',
@@ -24,7 +24,8 @@ depositNumber:string;
  public includeLiterals: boolean = true;
  public mask: string = "00000000000";
 
-  constructor( private invoiceService:InvoiceService,overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal
+  constructor( private invoiceService:InvoiceService,overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router:Router
+
                ) {  overlay.defaultViewContainer = vcRef; }
                
                onClick() {
@@ -47,6 +48,7 @@ depositNumber:string;
     });
     
   }
+
  
  onChecked(key:string,check:boolean,invoiceId:string){
    this.invoiceService.updateCheck(key,check,invoiceId);
@@ -58,7 +60,11 @@ depositNumber:string;
  }
 
 
+invoicePage() {
+              this.router.navigate(['view/'])
 
+
+  }
   ngOnInit() {
   }
 

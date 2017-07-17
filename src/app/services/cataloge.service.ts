@@ -34,6 +34,17 @@ constructor(private af:AngularFire) { }
                                                  Product.fromJsonProduct(result[0])).do(console.log);
                                                         
                                          }
+
+    getSortItems():Observable<Product[]>{
+                                          return this.af.database.list
+                                          ('products',{
+                                                  query:{
+                                                    orderByChild:'productId',
+                                                  
+                                                        }}).map(result=>
+                                                 Product.fromJsonProduct(result)).do(console.log);
+                                                        
+                                         }
                                          
 
 

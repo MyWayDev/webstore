@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { AngularFireModule} from 'angularfire2/index';
 import {firebaseConfig, authConfig} from '../environments/firebase.config';
 
-
 import { CatalogeComponent } from './cataloge/cataloge.component';
 import { ProductItemComponent } from './cataloge/product-item.component';
 import { ProductListComponent } from './cataloge/product-list.component';
@@ -96,7 +95,8 @@ import { OrdersortBindComponent } from './ordersort/ordersort-bind.component';
     OrdersortListComponent,
     OrdersortItemComponent,
     OrdersortDetailComponent,
-    OrdersortBindComponent,
+    OrdersortBindComponent
+  
    
   ],
   imports: [
@@ -109,7 +109,7 @@ import { OrdersortBindComponent } from './ordersort/ordersort-bind.component';
     InputsModule,
     ReactiveFormsModule,
     routes,
-  UiSwitchModule,
+    UiSwitchModule,
 
 
     MaskedTextBoxModule, NumericTextBoxModule,DateInputsModule,

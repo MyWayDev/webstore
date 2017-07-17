@@ -44,17 +44,10 @@ export class OrdersortListComponent implements OnInit {
   { 
     this.uid = this.authService.authInfo$.value.$uid;
     this.user=this.sls.getUid(this.uid).subscribe(uid=>this.user=uid);
-    
- 
   
   }
              
-
-  ngOnInit() {
-         
-            
-
-                     
+  ngOnInit() {                   
    /*this.invoiceService.getUserOrders()
                         .subscribe(orders=>
                                      this.invoices = this.myOrders = orders )
@@ -74,8 +67,8 @@ export class OrdersortListComponent implements OnInit {
                         
                       }
   getPending(){
-this.invoiceService.getPendingOrders().subscribe(pending=>{
-                                 this.invoices = this.pendingOrders  = this.filtered = pending;
+        this.invoiceService.getPendingOrders().subscribe(pending=>{
+                  this.invoices = this.pendingOrders  = this.filtered = pending;
 
                                 });     
                                                

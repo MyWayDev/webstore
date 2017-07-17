@@ -123,7 +123,7 @@ this.details = this.af.database.object('product/'+ d.key)
         invo.stock = [];
         for (var i = 0; i < invo.invoiceDetails.length; i++)
           invo.stock.push(this.af.database
-            .object('products/' + invo.invoiceDetails[i].ref))
+                    .object('products/' + invo.invoiceDetails[i].ref))
 
 
         console.log('invo', invo.stock);

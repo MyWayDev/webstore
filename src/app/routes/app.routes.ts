@@ -49,6 +49,7 @@ export const router:Routes = [
         children:ordersRoutes,
          canActivate:[AuthGuard]
     },
+  
        { 
         path:'stock', 
         component:StockComponent,

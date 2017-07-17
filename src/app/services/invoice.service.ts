@@ -44,20 +44,23 @@ updateCheck(key:string,check:boolean,invoiceId:string){
              
             });
           }
+
   updateDeposit(key: string, depositNumber: string) {
     let storageRef = firebase.storage().ref()
-    for (let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]) {
-      let path = `/${this.folder}/${selectedFile.name}`;
-      let iRef = storageRef.child(path);
-      iRef.put(selectedFile).then((snapshot) => {
+    for (let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]])
+     {
+        let path = `/${this.folder}/${selectedFile.name}`;
+        let iRef = storageRef.child(path);
+        iRef.put(selectedFile).then((snapshot) => {
         iRef.getDownloadURL().then((url) => {
+
           this.af.database.object('/invoices/' + key)
-            .update({
-              depositNumber: depositNumber,
-              depositImg: url,
-              pending: false
+                          .update({
+                                    depositNumber: depositNumber,
+                                    depositImg: url,
+                                    pending: false
              
-            });
+                                    });
         });
 
       })

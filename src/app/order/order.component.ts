@@ -58,11 +58,6 @@ CurrentDate = new Date();
      this.totalBp=this.sls.getTotalBp();
      this.totalQty = this.sls.getTotalQty();
      this.shipFees = this.sls.getShipFees();
-     
-    
-
-    
- 
   }
 
 onSave(addDate:Date,memberId:string,
@@ -93,23 +88,24 @@ onSave(addDate:Date,memberId:string,
                                 shippingFee:this.shipFees,                           
                                 invoiceDetails:this.sls.getItems()
             }
-            
+            if(newInvoice.invoiceDetails.length > 0)
+            {
               this.sls.saveInvoice(newInvoice);
               this.sls.deleteItems();
               this.emptyInvoice();
                this.router.navigate(['cataloge/'])
-              /*this.sls.getBalance()*/
+              /*this.sls.getBalance()*/}
             }
 
             emptyInvoice(){
-  this.totalAmount = 0;
-  this.totalQty = 0;
-  this.totalBp = 0;
-  this.shipFees=0;
+                            this.totalAmount = 0;
+                            this.totalQty = 0;
+                            this.totalBp = 0;
+                            this.shipFees=0;
 }
 
  backRoute() {
-    this.router.navigate(['cataloge/' + '1092'])
+              this.router.navigate(['cataloge/' + '1092'])
 
 
   }

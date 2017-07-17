@@ -2,9 +2,11 @@ import { InvoiceService } from '../services/invoice.service';
 import { InvoiceDetails } from '../models/invoice-details';
 import { AuthService } from '../services/auth.service';
 import { Invoice } from '../models/invoice';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router'; 
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   selector: 'app-backend-detail',
@@ -30,13 +32,15 @@ export class BackendDetailComponent implements OnInit {
   key:string;
   invoiceItem:Invoice;
   subscription: Subscription;
-  
+
+ 
 
 
   constructor(private router:Router,
               private route:ActivatedRoute,
               private authService:AuthService,
-              private invoiceService:InvoiceService)
+              private invoiceService:InvoiceService,
+              overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal)
                {
                  this.uidIndex = this.authService.authInfo$.value.$uid;
                }
@@ -50,7 +54,10 @@ export class BackendDetailComponent implements OnInit {
                      
   })
 
+  
+
 }
+
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
